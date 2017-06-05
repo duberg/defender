@@ -8,8 +8,6 @@ import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
 import com.defender.html.Welcome
 
-import scala.io.StdIn
-
 object Defender extends App {
   implicit val system = ActorSystem("defender")
   implicit val materializer = ActorMaterializer()
@@ -26,8 +24,4 @@ object Defender extends App {
   val bindingFuture = Http().bindAndHandle(route, "localhost", 8181)
 
   println(s"Defender online at http://localhost:8181/")
-  StdIn.readLine() // let it run until user presses return
-  bindingFuture
-    .flatMap(_.unbind()) // trigger unbinding from the port
-    .onComplete(_ => system.terminate()) // and shutdown when done
 }

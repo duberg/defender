@@ -14,7 +14,6 @@ object CommonSettings {
     packageDescription := "Intrusion Detection System for Ubuntu/Debian",
     scalaVersion := "2.12.2",
     libraryDependencies ++= Dependencies.all,
-    testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework"),
     JavaFormatterKeys.javaFormattingSettingsFilename := "eclipse-java-google-style.xml",
     parallelExecution in Test := false
   )
