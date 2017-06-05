@@ -1,6 +1,10 @@
-name := "defender"
+lazy val root = (project in file("."))
+  .settings(
+    CommonSettings.commonSettings
+  )
 
-version := "1.0"
+enablePlugins(JavaServerAppPackaging, SystemdPlugin)
 
-scalaVersion := "2.12.2"
-        
+
+
+    
