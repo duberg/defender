@@ -1,7 +1,6 @@
 import sbt.Keys._
 import sbt._
 
-import com.lightbend.sbt.JavaFormatterPlugin.JavaFormatterKeys
 import com.typesafe.sbt.packager.Keys._
 
 object CommonSettings {
@@ -11,10 +10,9 @@ object CommonSettings {
     version := "0.1.0-SNAPSHOT",
     maintainer := "Mark Duberg <scala@dr.com>",
     packageSummary := "Intrusion Detection System",
-    packageDescription := "Intrusion Detection System for Ubuntu/Debian",
+    packageDescription := "Intrusion Detection System for Ubuntu",
     scalaVersion := "2.12.2",
     libraryDependencies ++= Dependencies.all,
-    JavaFormatterKeys.javaFormattingSettingsFilename := "eclipse-java-google-style.xml",
     parallelExecution in Test := false
   )
 }
