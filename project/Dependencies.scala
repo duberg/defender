@@ -8,37 +8,45 @@ object Dependencies {
   val scalatagsVersion = "0.6.5"
   val scalacssVersion = "0.5.1"
   val json4sVersion = "3.5.2"
-  val javaMailApiVersion = "1.6.0-rc2"
+  val javaxMailApiVersion = "1.6.0-rc2"
+  val leveldbVersion = "0.9"
+  val leveldbjniVersion = "1.8"
 
   object Akka {
     val groupID = "com.typesafe.akka"
-    val actor = groupID %% "akka-actor" % akkaVersion
-    val http = groupID %% "akka-http" % akkaHttpVersion
-    val httpTestKit = groupID %% "akka-http-testkit" % akkaHttpVersion % Test
-    val httpSprayJson = groupID %% "akka-http-spray-json" % "10.0.7"
-    val persistence = groupID %% "akka-persistence" % akkaVersion
-    val all = Seq(actor, http, httpTestKit, httpSprayJson)
+    val actor: ModuleID = groupID %% "akka-actor" % akkaVersion
+    val http: ModuleID = groupID %% "akka-http" % akkaHttpVersion
+    val httpTestKit: ModuleID = groupID %% "akka-http-testkit" % akkaHttpVersion % Test
+    val httpSprayJson: ModuleID = groupID %% "akka-http-spray-json" % "10.0.7"
+    val persistence: ModuleID = groupID %% "akka-persistence" % akkaVersion
+    val all: Seq[ModuleID] = Seq(actor, http, httpTestKit, httpSprayJson, persistence)
   }
 
-  val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion % "test"
+  val scalatest: ModuleID = "org.scalatest" %% "scalatest" % scalatestVersion % "test"
 
-  val scalatags = "com.lihaoyi" %% "scalatags" % scalatagsVersion
+  val scalatags: ModuleID = "com.lihaoyi" %% "scalatags" % scalatagsVersion
 
   object Scalacss {
     val groupID = "com.github.japgolly.scalacss"
-    val core = groupID %% "core" % scalacssVersion
-    val ext = groupID %% "ext-scalatags" % scalacssVersion
+    val core: ModuleID = groupID %% "core" % scalacssVersion
+    val ext: ModuleID = groupID %% "ext-scalatags" % scalacssVersion
     val all = Seq(core, ext)
   }
 
-  val javaMailApi = "com.sun.mail" % "javax.mail" % javaMailApiVersion
+  val javaxMail: ModuleID = "com.sun.mail" % "javax.mail" % javaxMailApiVersion
 
-  val config = "com.typesafe" % "config" % "1.3.1"
+  val config: ModuleID = "com.typesafe" % "config" % "1.3.1"
 
-  val all = Seq(
+  object Leveldb {
+    val leveldb: ModuleID = "org.iq80.leveldb"            % "leveldb"          % leveldbVersion
+    val leveldbjni: ModuleID = "org.fusesource.leveldbjni"   % "leveldbjni-all"   % leveldbjniVersion
+    val all = Seq(leveldb, leveldbjni)
+  }
+
+  val all: Seq[ModuleID] = Seq(
     scalatest,
     scalatags,
-    javaMailApi,
+    javaxMail,
     config
-  ) ++ Akka.all ++ Scalacss.all
+  ) ++ Akka.all ++ Scalacss.all ++ Leveldb.all
 }

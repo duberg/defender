@@ -5,6 +5,7 @@ import java.time.LocalDateTime
 
 import akka.actor._
 import akka.pattern.ask
+import akka.persistence.PersistentActor
 import akka.util.Timeout
 import com.defender.{ Configuration, Mail }
 import com.defender.log.{ Log, _ }
@@ -16,30 +17,54 @@ import scala.language.postfixOps
 
 class AuthLogWatcher(implicit system: ActorSystem, timeout: Timeout) {
   import system.dispatcher
-  import AuthLogWatcherActor._
 
   val watcher: ActorRef = system.actorOf(AuthLogWatcherActor.props, "watcher")
 
-  system.scheduler.schedule(1 second, 1 minute, watcher, Analyze)
+  system.scheduler.schedule(1 second, 1 minute, watcher, Watch)
 
   def retrieveEvents: Future[Seq[Event]] = (watcher ? RetrieveEvents).mapTo[Seq[Event]]
 }
 
-private class AuthLogWatcherActor extends Actor with ActorLogging with ActorLifecycleHooks {
-  import AuthLogWatcherActor._
+private class AuthLogWatcherActor extends PersistentActor with ActorLogging with ActorLifecycleHooks {
+  override def persistenceId = "auth-log-watcher"
 
   var fileSize = 0L
   var notificationPending = false
   var events: Seq[Event] = Seq()
   var notifications: Seq[Notification] = Seq()
 
-  def receive: Receive = {
-    case Analyze => analyze()
+  def receiveCommand: Receive = {
+    case Watch => watch()
     case Notify => notification()
     case RetrieveEvents => sender() ! events
+    case v: AddEvents =>
+      persist(v) { v =>
+        addEvents(v.events)
+        self ! Notify
+      }
+    case Notified =>
+      persist(Notified) { _ =>
+        updateNotifications()
+      }
   }
 
-  def analyze(): Unit = {
+  val receiveRecover: Receive = {
+    case AddEvents(e) => addEvents(e)
+    case Notified => updateNotifications()
+  }
+
+  def addEvents(events: Seq[Event]): Unit = {
+    this.events ++= events
+    this.notifications ++= events.map(Notification(_))
+  }
+
+  def updateNotifications(): Unit = {
+    this.notifications = notifications.map { n =>
+      if (!n.notified) n.copy(notified = true) else n
+    }
+  }
+
+  def watch(): Unit = {
     import Log._
     def parse(line: String): Option[Event] = line match {
       case LogPattern(d, u, s, m) =>
@@ -63,11 +88,8 @@ private class AuthLogWatcherActor extends Actor with ActorLogging with ActorLife
         } yield e
       } finally bs.close()
       if (newEvents.nonEmpty) {
+        self ! AddEvents(newEvents)
         log.info(s"new ${newEvents.size} events found")
-        events ++= newEvents
-        notifications ++= newEvents.map(Notification(_))
-        self ! Notify
-        log.info("analyze completed")
       }
     }
   }
@@ -75,8 +97,10 @@ private class AuthLogWatcherActor extends Actor with ActorLogging with ActorLife
   def notification(): Unit = {
     import context.dispatcher
     import scalatags.Text.all._
-    val n = notifications.filterNot(_.notified)
-    if (n.nonEmpty) {
+    val events = notifications
+      .filterNot(_.notified)
+      .map(_.event)
+    if (events.nonEmpty) {
       log.info("notify triggered")
       val notified = Mail.send(
         "Defender: authentication failure event",
@@ -91,21 +115,23 @@ private class AuthLogWatcherActor extends Actor with ActorLogging with ActorLife
         ).render
       )
       if (notified) {
-        notificationPending = false
+        self ! Notified
         log.info("notify completed")
       } else if (!notificationPending) {
         notificationPending = true
-        context.system.scheduler.scheduleOnce(Configuration.mail.retryAfter, self, Notify)
-        log.info(s"notify failed, retry after ${Configuration.mail.retryAfter}")
+        context.system.scheduler.scheduleOnce(Configuration.Mail.RetryAfter, self, Notify)
+        log.info(s"notify failed, retry after ${Configuration.Mail.RetryAfter}")
       }
     }
   }
 }
 
-private object AuthLogWatcherActor {
-  case object Analyze
-  case object Notify
-  case object RetrieveEvents
+case object Watch
+case object Notify
+case object Notified
+case object RetrieveEvents
+case class AddEvents(events: Seq[Event])
 
+private object AuthLogWatcherActor {
   def props: Props = Props(new AuthLogWatcherActor)
 }

@@ -1,7 +1,6 @@
 package com.defender
 
-import akka.actor.ActorSystem
-import akka.http.scaladsl.settings.ServerSettings
+import akka.actor.{ ActorSystem, Props }
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ ContentTypes, HttpEntity }
 import akka.http.scaladsl.server.Directives._
@@ -46,7 +45,7 @@ object Defender extends App with JsonSupport {
     }
   }
 
-  val port = Configuration.server.port
+  val port = Configuration.Server.Port
   val bindingFuture = Http().bindAndHandle(route, "localhost", port)
 
   println(s"Defender online at http://localhost:$port/")
