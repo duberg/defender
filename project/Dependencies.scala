@@ -19,6 +19,7 @@ object Dependencies {
     val httpTestKit: ModuleID = groupID %% "akka-http-testkit" % akkaHttpVersion % Test
     val httpSprayJson: ModuleID = groupID %% "akka-http-spray-json" % "10.0.7"
     val persistence: ModuleID = groupID %% "akka-persistence" % akkaVersion
+
     val all: Seq[ModuleID] = Seq(actor, http, httpTestKit, httpSprayJson, persistence)
   }
 

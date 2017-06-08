@@ -1,6 +1,6 @@
 package com.defender
 
-import akka.actor.{ ActorSystem, Props }
+import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ ContentTypes, HttpEntity }
 import akka.http.scaladsl.server.Directives._
@@ -8,7 +8,6 @@ import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
 import akka.util.Timeout
 import com.defender.services.AuthLogService
-import com.defender.watcher._
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
@@ -18,18 +17,25 @@ import scalatags.Text.all._
 object Defender extends App with JsonSupport {
   implicit val system = ActorSystem("defender")
   implicit val materializer = ActorMaterializer()
-  implicit val executionContext = system.dispatcher
+  implicit val executor = system.dispatcher
   implicit val timeout = Timeout(5 seconds)
 
-  val authLogWatcher = new AuthLogWatcher
-  val authLogService = new AuthLogService(authLogWatcher)
+  val notifierActor = system.actorOf(NotifierActor.props("default", Configuration.Server.Notifier.RetryInterval), "notifier-default")
+  val watcher = new Watcher(
+    Configuration.Server.Watchers.AuthLog.Name,
+    Configuration.Server.Watchers.AuthLog.File,
+    Configuration.Server.Watchers.AuthLog.MatchPattern,
+    Configuration.Server.Watchers.AuthLog.PollInterval,
+    notifierActor
+  )
+  val authLogService = new AuthLogService(watcher)
 
-  def retrieveEvents: Future[String] = authLogService.retrieveEvents.map(events =>
+  def events: Future[String] = authLogService.events.map(events =>
     html(
       body(
         ol(
-          for (e <- events) yield li(
-            s"${e.localDateTime}, username: ${e.username}, sevice: ${e.service}, message: ${e.message}"
+          for (x <- events) yield li(
+            s"${x.localDateTime}, username: ${x.username}, sevice: ${x.service}, message: ${x.message}"
           )
         )
       )
@@ -38,8 +44,8 @@ object Defender extends App with JsonSupport {
   val route: Route = {
     pathEndOrSingleSlash {
       get {
-        onSuccess(retrieveEvents) { events =>
-          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, events))
+        onSuccess(events) { ev =>
+          complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, ev))
         }
       }
     }

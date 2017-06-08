@@ -1,4 +1,4 @@
-package com.defender.log
+package com.defender
 
 import java.time.LocalDateTime
 

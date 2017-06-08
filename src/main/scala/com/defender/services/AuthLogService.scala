@@ -1,10 +1,9 @@
 package com.defender.services
 
-import com.defender.log.Event
-import com.defender.watcher.AuthLogWatcher
+import com.defender.{ Event, Watcher }
 
-import scala.concurrent.Future
+import scala.concurrent.{ ExecutionContext, Future }
 
-class AuthLogService(sysLogWatcher: AuthLogWatcher) {
-  def retrieveEvents: Future[Seq[Event]] = sysLogWatcher.retrieveEvents
+class AuthLogService(watcher: Watcher)(implicit executor: ExecutionContext) {
+  def events: Future[Seq[Event]] = watcher.event.map(_.takeRight(30))
 }

@@ -1,4 +1,4 @@
-package com.defender.watcher
+package com.defender
 
 import akka.actor.{ Actor, ActorLogging }
 
