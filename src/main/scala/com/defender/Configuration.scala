@@ -12,68 +12,78 @@ import scala.collection.mutable
 import scala.util.matching.Regex
 
 object Configuration {
-  private lazy val Application = ConfigFactory.load()
+  private lazy val EnvConf: Config = {
+    val path = System.getProperty("config.env.file")
+    println(s"Environment configuration file: $path")
+    try ConfigFactory.parseFile(new File(path)) catch {
+      case e: Exception =>
+        println(s"Can't load config: ${e.getMessage}")
+        ConfigFactory.load()
+    }
+  }
+  private lazy val Configuration: Config = {
+    val path = System.getProperty("config.base.file")
+    val config = try ConfigFactory.parseFile(new File(path)) catch {
+      case e: Exception =>
+        println(s"Can't load config: ${e.getMessage}")
+        ConfigFactory.load()
+    }
+    println(s"Base configuration file: $path")
+    EnvConf.withFallback(config)
+  }
+  lazy val AllConfig: Config = Configuration
+  lazy val ApplicationConfig: Config = Configuration.getConfig("application")
 
-  object Server {
-    private lazy val Server = Application.getConfig("server")
-    lazy val Port: Int = Server.getInt("port")
+  lazy val Port: Int = ApplicationConfig.getInt("port")
 
-    object Watchers {
-      private lazy val Watchers = Server.getConfig("watchers")
-      lazy val Entries: Map[String, mutable.Set[(String, ConfigValue)]] = {
-        def watcherName(entry: Entry[String, ConfigValue]) = {
-          val k = entry.getKey
-          k.substring(0, k.indexOf("."))
-        }
-        def mapPairs(pairs: (String, mutable.Set[Entry[String, ConfigValue]])) = pairs match {
-          case (k, v) => (k, mapEntry(v))
-        }
-        def mapEntry(entries: mutable.Set[Entry[String, ConfigValue]]) = entries.map(entry => {
-          val k = entry.getKey
-          (k.substring(k.indexOf(".") + 1, k.length), entry.getValue)
-        })
-
-        Application.getConfig("server.watchers").entrySet().asScala
-          .groupBy(watcherName)
-          .map(mapPairs)
+  object Watchers {
+    private lazy val WatchersConf = ApplicationConfig.getConfig("watchers")
+    lazy val Entries: Map[String, mutable.Set[(String, ConfigValue)]] = {
+      def watcherName(entry: Entry[String, ConfigValue]) = {
+        val k = entry.getKey
+        k.substring(0, k.indexOf("."))
       }
-
-      object AuthLog {
-        private lazy val AuthLog = Watchers.getConfig("auth-log")
-
-        lazy val Name = "auth-log"
-        lazy val File: File = new File(AuthLog.getString("file"))
-        lazy val MatchPattern: Regex = AuthLog.getString("match-pattern").r
-        lazy val PollInterval: FiniteDuration =
-          Duration(AuthLog.getString("poll-interval")).asInstanceOf[FiniteDuration]
+      def mapPairs(pairs: (String, mutable.Set[Entry[String, ConfigValue]])) = pairs match {
+        case (k, v) => (k, mapEntry(v))
       }
+      def mapEntry(entries: mutable.Set[Entry[String, ConfigValue]]) = entries.map(entry => {
+        val k = entry.getKey
+        (k.substring(k.indexOf(".") + 1, k.length), entry.getValue)
+      })
 
-      object Notifier {
-        private lazy val Notifier = Server.getConfig("notifier")
-
-        lazy val RetryInterval: FiniteDuration =
-          Duration(Notifier.getString("retry-interval")).asInstanceOf[FiniteDuration]
-      }
+      ApplicationConfig.getConfig("server.watchers").entrySet().asScala
+        .groupBy(watcherName)
+        .map(mapPairs)
     }
 
-    object Notifier {
-      private lazy val Notifier = Server.getConfig("notifier")
+    object AuthLog {
+      private lazy val AuthLogConf = WatchersConf.getConfig("auth-log")
 
-      lazy val RetryInterval: FiniteDuration =
-        Duration(Notifier.getString("retry-interval")).asInstanceOf[FiniteDuration]
+      lazy val Name = "auth-log"
+      lazy val File: File = new File(AuthLogConf.getString("file"))
+      lazy val MatchPattern: Regex = AuthLogConf.getString("match-pattern").r
+      lazy val PollInterval: FiniteDuration =
+        Duration(AuthLogConf.getString("poll-interval")).asInstanceOf[FiniteDuration]
     }
   }
 
+  object Notifier {
+    private lazy val Notifier = ApplicationConfig.getConfig("notifier")
+
+    lazy val RetryInterval: FiniteDuration =
+      Duration(Notifier.getString("retry-interval")).asInstanceOf[FiniteDuration]
+  }
+
   object Mail {
-    lazy val Entries: Map[String, AnyRef] = Application.entrySet().asScala
+    lazy val Entries: Map[String, AnyRef] = ApplicationConfig.entrySet().asScala
       .filter(_.getKey.contains("mail.smtp"))
       .map(entry => (entry.getKey, entry.getValue.unwrapped()))
       .toMap
-    private lazy val Mail = Application.getConfig("mail")
+    private lazy val MailConf = ApplicationConfig.getConfig("mail")
 
-    lazy val From: String = Mail.getString("from")
-    lazy val To: String = Mail.getString("to")
-    lazy val Username: String = Mail.getString("username")
-    lazy val Password: String = Mail.getString("password")
+    lazy val From: String = MailConf.getString("from")
+    lazy val To: String = MailConf.getString("to")
+    lazy val Username: String = MailConf.getString("username")
+    lazy val Password: String = MailConf.getString("password")
   }
 }

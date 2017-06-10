@@ -1,0 +1,3 @@
+-Dconfig.base.file=conf/base/base.conf
+-Dconfig.env.file=conf/local/local.conf
+-Dlogback.configurationFile=conf/local/logback-test.xml

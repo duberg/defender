@@ -1,10 +1,14 @@
+import CommonConfigurations._
+
 lazy val root = (project in file("."))
-  .settings(
-    CommonSettings.commonSettings
+  .enablePlugins(
+    JavaServerAppPackaging ,
+    LinuxPlugin,
+    UniversalPlugin,
+    DebianPlugin,
+    SystemdPlugin
   )
+  .configs(Development, Production)
+  // define custom settings
+  .settings(CommonSettings.commonSettings)
 
-enablePlugins(JavaServerAppPackaging, SystemdPlugin)
-
-
-
-    

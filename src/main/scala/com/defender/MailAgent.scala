@@ -26,7 +26,7 @@ object MailAgent {
     msg.setSubject(subject)
     msg.setText(message, "utf-8", "html")
     try Transport.send(msg) catch {
-      case e: Throwable => MailAgentException(e.getMessage, e)
+      case e: Throwable => throw MailAgentException(e.getMessage, e)
     }
   }
 }

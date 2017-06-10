@@ -1,6 +1,7 @@
 package com.defender
 
 import java.io.File
+import java.time.LocalDateTime
 
 import akka.actor._
 import akka.pattern.ask
@@ -12,6 +13,7 @@ import scala.concurrent.duration._
 import scala.io.Source
 import scala.language.postfixOps
 import scala.util.matching.Regex
+import Implicits._
 
 class Watcher(
     name: String,
@@ -19,12 +21,13 @@ class Watcher(
     matchPattern: Regex,
     pollInterval: FiniteDuration,
     notifier: ActorRef
-)(implicit system: ActorSystem, timeout: Timeout) {
-  import system.dispatcher
+)(implicit context: ActorContext, timeout: Timeout) {
+  import context.dispatcher
 
-  val watcher: ActorRef = system.actorOf(WatcherActor.props(name, file, matchPattern, notifier), s"watcher-$name")
+  val watcher: ActorRef = context.actorOf(WatcherActor.props(name, file, matchPattern, notifier), s"watcher-$name")
 
-  system.scheduler.schedule(1 second, pollInterval, watcher, Watch)
+  context.system.scheduler.schedule(1 second, pollInterval, watcher, Watch)
+  context.system.scheduler.schedule(1 second, 1 day, watcher, Clean)
 
   def event: Future[Seq[Event]] = (watcher ? GetEvents).mapTo[Seq[Event]]
 }
@@ -39,15 +42,20 @@ private class WatcherActor(
   override def persistenceId = s"watcher-$name"
 
   var fileSize = 0L
-  var events: Seq[Event] = Seq()
+  var cache: Seq[Event] = Seq()
 
   def receiveCommand: Receive = {
     case Watch => watch()
-    case GetEvents => sender() ! events
-    case v: AddEvents =>
-      persist(v) { v =>
-        addEvents(v.events)
-        notifier ! v
+    case Clean => clean()
+    case GetEvents => sender() ! cache
+    case event: AddEvents =>
+      persist(event) { ev =>
+        addEvents(ev.events)
+        notifier ! ev
+      }
+    case event: RemoveEvents =>
+      persist(event) { ev =>
+        removeEvents(ev.events)
       }
   }
 
@@ -56,8 +64,20 @@ private class WatcherActor(
   }
 
   def addEvents(events: Seq[Event]): Unit = {
-    this.events ++= events
-    log.info(s"new ${events.size} events added")
+    cache ++= events
+  }
+
+  def removeEvents(events: Seq[Event]): Unit = {
+    cache = cache diff events
+  }
+
+  def clean(): Unit = {
+    val ltd = LocalDateTime.now().minusDays(3)
+    val events = cache.filter(_.ldt < ltd)
+    if (events.nonEmpty) {
+      self ! RemoveEvents(events)
+      log.info(s"clean cache")
+    }
   }
 
   def watch(): Unit = {
@@ -69,19 +89,25 @@ private class WatcherActor(
       val bs = Source.fromFile(file.getPath)
         .withClose(() => log.info("log file closed"))
       try {
-        val newEvents = for {
+        lazy val ltd = LocalDateTime.now().minusDays(3)
+        val events = for {
           line <- bs.getLines().toList
-          _ <- matchPattern findFirstIn line // todo
+          _ <- matchPattern findFirstIn line
           event <- parse(line)
-          if !(events contains event)
+          if event.ldt > ltd
+          if !(cache contains event)
         } yield event
-        if (newEvents.nonEmpty) self ! AddEvents(newEvents)
+        if (events.nonEmpty) {
+          log.info(s"new ${events.size} events found")
+          self ! AddEvents(events)
+        }
       } finally bs.close()
     }
   }
 }
 
 private case object Watch
+private case object Clean
 private case class AddEvents(events: Seq[Event])
 private case class RemoveEvents(events: Seq[Event])
 case object GetEvents

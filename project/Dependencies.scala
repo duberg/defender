@@ -19,8 +19,9 @@ object Dependencies {
     val httpTestKit: ModuleID = groupID %% "akka-http-testkit" % akkaHttpVersion % Test
     val httpSprayJson: ModuleID = groupID %% "akka-http-spray-json" % "10.0.7"
     val persistence: ModuleID = groupID %% "akka-persistence" % akkaVersion
-
-    val all: Seq[ModuleID] = Seq(actor, http, httpTestKit, httpSprayJson, persistence)
+    val slf4j: ModuleID = groupID %% "akka-slf4j" % akkaVersion
+    val logback: ModuleID = "ch.qos.logback" % "logback-classic" % "1.2.3"
+    val all: Seq[ModuleID] = Seq(actor, http, httpTestKit, httpSprayJson, persistence, slf4j, logback)
   }
 
   val scalatest: ModuleID = "org.scalatest" %% "scalatest" % scalatestVersion % "test"
@@ -40,7 +41,7 @@ object Dependencies {
 
   object Leveldb {
     val leveldb: ModuleID = "org.iq80.leveldb"            % "leveldb"          % leveldbVersion
-    val leveldbjni: ModuleID = "org.fusesource.leveldbjni"   % "leveldbjni-all"   % leveldbjniVersion
+    val leveldbjni: ModuleID = "org.fusesource.leveldbjni"   % "leveldbjni-linux64"   % leveldbjniVersion
     val all = Seq(leveldb, leveldbjni)
   }
 

@@ -9,38 +9,39 @@ class NotifierActor(name: String, retryInterval: FiniteDuration)
     extends PersistentActor with ActorLogging with ActorLifecycleHooks {
   override def persistenceId = s"notifier-$name"
 
-  var events: Seq[Event] = Seq()
+  var cache: Seq[Event] = Seq()
   var pending = false
 
   def receiveCommand: Receive = {
     case Notify => notification()
-    case v: AddEvents =>
-      persist(v) { v =>
-        addEvents(v.events)
+    case event: AddEvents =>
+      persist(event) { ev =>
+        addEvents(ev.events)
         if (!pending) self ! Notify
       }
-    case v: RemoveEvents =>
-      persist(v) { v =>
-        removeEvents(v.events)
+    case event: RemoveEvents =>
+      persist(event) { ev =>
+        removeEvents(ev.events)
       }
   }
 
   def receiveRecover: Receive = {
     case AddEvents(ev) => addEvents(ev)
+    case RemoveEvents(ev) => removeEvents(ev)
   }
 
   def addEvents(events: Seq[Event]): Unit = {
-    this.events ++= events
+    cache ++= events
   }
 
   def removeEvents(events: Seq[Event]): Unit = {
-    this.events = this.events diff events
+    cache = cache diff events
   }
 
   def notification(): Unit = {
     import context.dispatcher
     import scalatags.Text.all._
-    if (events.nonEmpty) {
+    if (cache.nonEmpty) {
       log.info("notify triggered")
       val notified = try {
         MailAgent.send(
@@ -48,8 +49,8 @@ class NotifierActor(name: String, retryInterval: FiniteDuration)
           html(
             body(
               ol(
-                for (x <- events) yield li(
-                  s"${x.localDateTime}, username: ${x.username}, sevice: ${x.service}, message: ${x.message}"
+                for (x <- cache) yield li(
+                  s"${x.ldt}, username: ${x.username}, sevice: ${x.service}, message: ${x.message}"
                 )
               )
             )
@@ -63,7 +64,7 @@ class NotifierActor(name: String, retryInterval: FiniteDuration)
       }
       if (notified) {
         pending = false
-        self ! RemoveEvents(events)
+        self ! RemoveEvents(cache)
         log.info("notify completed")
       } else {
         context.system.scheduler.scheduleOnce(retryInterval, self, Notify)

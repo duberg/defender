@@ -2,4 +2,4 @@ package com.defender
 
 import java.time.LocalDateTime
 
-case class Event(localDateTime: LocalDateTime, username: String, service: String, message: String)
+case class Event(ldt: LocalDateTime, username: String, service: String, message: String)
