@@ -2,80 +2,81 @@ package com.defender
 
 import akka.actor.{ ActorLogging, Props }
 import akka.persistence.PersistentActor
+import com.defender.NotifierActor._
+import com.defender.mail.MailSender
 
 import scala.concurrent.duration.FiniteDuration
 
-class NotifierActor(name: String, retryInterval: FiniteDuration)
-    extends PersistentActor with ActorLogging with ActorLifecycleHooks {
-  override def persistenceId = s"notifier-$name"
+case class NotifierActorState(records: Seq[LogRecord] = Seq.empty) {
+  def updated(event: NotifierEvent): NotifierActorState = event match {
+    case AddedEvent(r) => copy(records ++ r)
+    case RemovedEvent(r) => copy(records diff r)
+  }
+  def isEmpty: Boolean = records.isEmpty
+  def nonEmpty: Boolean = records.nonEmpty
+}
 
-  var cache: Seq[Event] = Seq()
-  var pending = false
-
+class NotifierActor(
+  id: String,
+  retryInterval: FiniteDuration,
+  mailSender: MailSender,
+  var state: NotifierActorState,
+  var pending: Boolean
+) extends PersistentActor
+    with ActorLogging with ActorLifecycleHooks {
+  def persistenceId: String = id
   def receiveCommand: Receive = {
-    case Notify => notification()
-    case event: AddEvents =>
-      persist(event) { ev =>
-        addEvents(ev.events)
-        if (!pending) self ! Notify
+    case NotifyRequest =>
+      log.info("notify")
+      val result = mailSender
+        .withHandler { e =>
+          log.error(e.getMessage, e)
+          context.system.scheduler.scheduleOnce(retryInterval, self, NotifyRequest)(context.dispatcher, self)
+        }
+        .send(state.records)
+      if (result) {
+        self ! RemoveCommand(state.records)
+        if (self != sender()) sender() ! NotifyResponse
       }
-    case event: RemoveEvents =>
-      persist(event) { ev =>
-        removeEvents(ev.events)
+    case GetRequest =>
+      sender() ! GetResponse(state.records)
+    case AddCommand(r) =>
+      if (r.nonEmpty) {
+        persist(AddedEvent(r)) { event =>
+          state = state.updated(event)
+          self ! NotifyRequest
+        }
+      }
+    case RemoveCommand(r) =>
+      if (r.nonEmpty) {
+        persist(RemovedEvent(r)) { event =>
+          state = state.updated(event)
+        }
       }
   }
 
-  def receiveRecover: Receive = {
-    case AddEvents(ev) => addEvents(ev)
-    case RemoveEvents(ev) => removeEvents(ev)
-  }
-
-  def addEvents(events: Seq[Event]): Unit = {
-    cache ++= events
-  }
-
-  def removeEvents(events: Seq[Event]): Unit = {
-    cache = cache diff events
-  }
-
-  def notification(): Unit = {
-    import context.dispatcher
-    import scalatags.Text.all._
-    if (cache.nonEmpty) {
-      log.info("notify triggered")
-      val notified = try {
-        MailAgent.send(
-          "Defender: authentication failure event",
-          html(
-            body(
-              ol(
-                for (x <- cache) yield li(
-                  s"${x.ldt}, username: ${x.username}, sevice: ${x.service}, message: ${x.message}"
-                )
-              )
-            )
-          ).render
-        )
-        true
-      } catch {
-        case e: MailAgentException =>
-          log.error(e.message)
-          false
-      }
-      if (notified) {
-        pending = false
-        self ! RemoveEvents(cache)
-        log.info("notify completed")
-      } else {
-        context.system.scheduler.scheduleOnce(retryInterval, self, Notify)
-        log.info(s"notify failed, retry after $retryInterval")
-      }
-    }
+  val receiveRecover: Receive = {
+    case event: NotifierEvent => state = state.updated(event)
   }
 }
 
 private object NotifierActor {
-  def props(name: String, retryInterval: FiniteDuration): Props = Props(new NotifierActor(name, retryInterval))
-}
+  def props(
+    id: String,
+    retryInterval: FiniteDuration,
+    mailSender: MailSender = new MailSender,
+    state: NotifierActorState = NotifierActorState()
+  ): Props = Props(new NotifierActor(id, retryInterval, mailSender, state, false))
 
-private case object Notify
+  case class AddCommand(records: Seq[LogRecord])
+  case class RemoveCommand(records: Seq[LogRecord])
+
+  case object GetRequest
+  case class GetResponse(records: Seq[LogRecord])
+  case object NotifyRequest
+  case object NotifyResponse
+
+  sealed trait NotifierEvent
+  case class AddedEvent(records: Seq[LogRecord]) extends NotifierEvent
+  case class RemovedEvent(records: Seq[LogRecord]) extends NotifierEvent
+}

@@ -31,7 +31,7 @@ object CommonSettings {
         daemonGroup in Linux := "adm", // group with read rights /var/log/auth.log
         scalaVersion := "2.12.2",
         libraryDependencies ++= Dependencies.all,
-        parallelExecution in Test := false,
+        parallelExecution in Test := true,
         confDir := baseDirectory.value / "conf",
         appBaseConfDir := confDir.value / "base",
         appConf := {

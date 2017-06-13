@@ -9,7 +9,6 @@ import scala.collection.JavaConverters._
 import java.util.Map.Entry
 
 import scala.collection.mutable
-import scala.util.matching.Regex
 
 object Configuration {
   private lazy val EnvConf: Config = {
@@ -61,7 +60,6 @@ object Configuration {
 
       lazy val Name = "auth-log"
       lazy val File: File = new File(AuthLogConf.getString("file"))
-      lazy val MatchPattern: Regex = AuthLogConf.getString("match-pattern").r
       lazy val PollInterval: FiniteDuration =
         Duration(AuthLogConf.getString("poll-interval")).asInstanceOf[FiniteDuration]
     }

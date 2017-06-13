@@ -1,118 +1,104 @@
 package com.defender
 
 import java.io.File
-import java.time.LocalDateTime
 
 import akka.actor._
 import akka.pattern.ask
 import akka.persistence.PersistentActor
 import akka.util.Timeout
+import com.defender.WatcherActor._
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
-import scala.io.Source
 import scala.language.postfixOps
-import scala.util.matching.Regex
-import Implicits._
 
 class Watcher(
-    name: String,
+    id: String,
     file: File,
-    matchPattern: Regex,
     pollInterval: FiniteDuration,
     notifier: ActorRef
 )(implicit context: ActorContext, timeout: Timeout) {
   import context.dispatcher
 
-  val watcher: ActorRef = context.actorOf(WatcherActor.props(name, file, matchPattern, notifier), s"watcher-$name")
+  val analyzer = new LogAnalyzer(file)
+  val watcher: ActorRef = context.actorOf(WatcherActor.props(id, analyzer, notifier), id)
 
-  context.system.scheduler.schedule(1 second, pollInterval, watcher, Watch)
-  context.system.scheduler.schedule(1 second, 1 day, watcher, Clean)
+  context.system.scheduler.schedule(1 second, pollInterval, watcher, WatchRequest)(dispatcher, watcher)
+  context.system.scheduler.schedule(1 second, 1 day, watcher, CleanRequest)(dispatcher, watcher)
 
-  def event: Future[Seq[Event]] = (watcher ? GetEvents).mapTo[Seq[Event]]
+  def event: Future[Seq[LogRecord]] = (watcher ? GetRequest)
+    .mapTo[GetResponse]
+    .map(_.records)
+}
+
+case class WatcherActorState(records: Seq[LogRecord] = Seq.empty) {
+  def updated(event: WatcherEvent): WatcherActorState = event match {
+    case AddedEvent(r) => copy(records ++ r)
+    case RemovedEvent(r) => copy(records diff r)
+  }
 }
 
 private class WatcherActor(
-  name: String,
-  file: File,
-  matchPattern: Regex,
-  notifier: ActorRef
-) extends PersistentActor
-    with ActorLogging with ActorLifecycleHooks {
-  override def persistenceId = s"watcher-$name"
-
-  var fileSize = 0L
-  var cache: Seq[Event] = Seq()
-
+    id: String,
+    analyzer: LogAnalyzer,
+    notifier: ActorRef,
+    private var state: WatcherActorState
+) extends PersistentActor with ActorLogging with ActorLifecycleHooks {
+  def persistenceId: String = id
   def receiveCommand: Receive = {
-    case Watch => watch()
-    case Clean => clean()
-    case GetEvents => sender() ! cache
-    case event: AddEvents =>
-      persist(event) { ev =>
-        addEvents(ev.events)
-        notifier ! ev
+    case WatchRequest =>
+      val r = analyzer.analyze.filterNot(state.records.contains(_))
+      self ! AddCommand(r)
+      context.system.scheduler
+      if (self != sender()) sender() ! WatchResponse
+    case CleanRequest =>
+      val r = analyzer findOld state.records
+      self ! RemoveCommand(r)
+      if (self != sender()) sender() ! CleanResponse
+    case GetRequest =>
+      sender() ! GetResponse(state.records)
+    case AddCommand(r) =>
+      if (r.nonEmpty) {
+        persist(AddedEvent(r)) { event =>
+          state = state.updated(event)
+          notifier ! NotifierActor.AddCommand(r)
+          log.info(s"${r.size} log records added")
+        }
       }
-    case event: RemoveEvents =>
-      persist(event) { ev =>
-        removeEvents(ev.events)
+    case RemoveCommand(r) =>
+      if (r.nonEmpty) {
+        persist(RemovedEvent(r)) { event =>
+          state = state.updated(event)
+          log.info(s"${r.size} log records removed")
+        }
       }
   }
 
   val receiveRecover: Receive = {
-    case AddEvents(ev) => addEvents(ev)
-  }
-
-  def addEvents(events: Seq[Event]): Unit = {
-    cache ++= events
-  }
-
-  def removeEvents(events: Seq[Event]): Unit = {
-    cache = cache diff events
-  }
-
-  def clean(): Unit = {
-    val ltd = LocalDateTime.now().minusDays(3)
-    val events = cache.filter(_.ldt < ltd)
-    if (events.nonEmpty) {
-      self ! RemoveEvents(events)
-      log.info(s"clean cache")
-    }
-  }
-
-  def watch(): Unit = {
-    import Parser.parse
-    val s = file.length()
-    if (s != fileSize) {
-      log.info("log file has changed")
-      fileSize = s
-      val bs = Source.fromFile(file.getPath)
-        .withClose(() => log.info("log file closed"))
-      try {
-        lazy val ltd = LocalDateTime.now().minusDays(3)
-        val events = for {
-          line <- bs.getLines().toList
-          _ <- matchPattern findFirstIn line
-          event <- parse(line)
-          if event.ldt > ltd
-          if !(cache contains event)
-        } yield event
-        if (events.nonEmpty) {
-          log.info(s"new ${events.size} events found")
-          self ! AddEvents(events)
-        }
-      } finally bs.close()
-    }
+    case event: WatcherEvent => state = state.updated(event)
   }
 }
 
-private case object Watch
-private case object Clean
-private case class AddEvents(events: Seq[Event])
-private case class RemoveEvents(events: Seq[Event])
-case object GetEvents
-
 private object WatcherActor {
-  def props(name: String, file: File, matchPattern: Regex, notifier: ActorRef): Props =
-    Props(new WatcherActor(name, file, matchPattern, notifier))
+  def props(
+    id: String,
+    analyzer: LogAnalyzer,
+    notifier: ActorRef,
+    state: WatcherActorState = WatcherActorState()
+  ): Props =
+    Props(new WatcherActor(id, analyzer, notifier, state))
+
+  case class AddCommand(records: Seq[LogRecord])
+  case class RemoveCommand(records: Seq[LogRecord])
+
+  case object WatchRequest
+  case object WatchResponse
+  case object CleanRequest
+  case object CleanResponse
+  case object GetRequest
+  case class GetResponse(records: Seq[LogRecord])
+
+  sealed trait WatcherEvent
+  case class AddedEvent(records: Seq[LogRecord]) extends WatcherEvent
+  case class RemovedEvent(records: Seq[LogRecord]) extends WatcherEvent
 }

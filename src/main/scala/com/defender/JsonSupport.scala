@@ -16,6 +16,6 @@ trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
     }
   }
 
-  implicit val logEventFormat: RootJsonFormat[Event] = jsonFormat4(Event)
+  implicit val logEventFormat: RootJsonFormat[LogRecord] = jsonFormat4(LogRecord)
 
 }

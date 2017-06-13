@@ -1,10 +1,12 @@
-package com.defender
+package com.defender.mail
 
 import java.util.Properties
 import javax.mail._
 import javax.mail.internet.{ InternetAddress, MimeMessage }
 
-object MailAgent {
+import com.defender.Configuration
+
+object Mail {
   def send(subject: String, message: String): Unit = {
     val props = new Properties
     Configuration.Mail.Entries.foreach({ case (k, v) => props.put(k, v) })
@@ -25,11 +27,6 @@ object MailAgent {
     )
     msg.setSubject(subject)
     msg.setText(message, "utf-8", "html")
-    try Transport.send(msg) catch {
-      case e: Throwable => throw MailAgentException(e.getMessage, e)
-    }
+    Transport.send(msg)
   }
 }
-
-case class MailAgentException(message: String = "", cause: Throwable = None.orNull)
-  extends Exception(message, cause)
