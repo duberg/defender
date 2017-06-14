@@ -2,15 +2,17 @@ package com.defender
 
 import akka.actor.{ ActorLogging, Props }
 import akka.persistence.PersistentActor
+import akka.util.Timeout
 import com.defender.NotifierActor._
 import com.defender.mail.MailSender
 
+import scala.concurrent.ExecutionContext
 import scala.concurrent.duration.FiniteDuration
 
-case class NotifierActorState(records: Seq[LogRecord] = Seq.empty) {
+case class NotifierActorState(records: Records = Set.empty) {
   def updated(event: NotifierEvent): NotifierActorState = event match {
     case AddedEvent(r) => copy(records ++ r)
-    case RemovedEvent(r) => copy(records diff r)
+    case RemovedEvent(r) => copy(records -- r)
   }
   def isEmpty: Boolean = records.isEmpty
   def nonEmpty: Boolean = records.nonEmpty
@@ -22,37 +24,46 @@ class NotifierActor(
   mailSender: MailSender,
   var state: NotifierActorState,
   var pending: Boolean
-) extends PersistentActor
+)(implicit executor: ExecutionContext, timeout: Timeout) extends PersistentActor
     with ActorLogging with ActorLifecycleHooks {
   def persistenceId: String = id
   def receiveCommand: Receive = {
     case NotifyRequest =>
-      log.info("notify")
-      val result = mailSender
+      val s = sender()
+      def ms = mailSender
         .withHandler { e =>
           log.error(e.getMessage, e)
           context.system.scheduler.scheduleOnce(retryInterval, self, NotifyRequest)(context.dispatcher, self)
         }
-        .send(state.records)
-      if (result) {
+      for {
+        r <- ms.send(state.records)
+        _ <- r
+      } {
         self ! RemoveCommand(state.records)
-        if (self != sender()) sender() ! NotifyResponse
+        if (self != s) s ! NotifyResponse
+        log.info("notify request completed")
       }
     case GetRequest =>
       sender() ! GetResponse(state.records)
     case AddCommand(r) =>
-      if (r.nonEmpty) {
-        persist(AddedEvent(r)) { event =>
+      // must not persist event with same records
+      val diff = r -- state.records
+      if (diff.nonEmpty) {
+        persist(AddedEvent(diff)) { event =>
           state = state.updated(event)
           self ! NotifyRequest
+          if (self != sender()) sender() ! Persisted
         }
-      }
+      } else if (self != sender()) sender() ! NotPersisted
     case RemoveCommand(r) =>
-      if (r.nonEmpty) {
-        persist(RemovedEvent(r)) { event =>
+      // must not persist event with already removed records
+      val inter = r intersect state.records
+      if (inter.nonEmpty) {
+        persist(RemovedEvent(inter)) { event =>
           state = state.updated(event)
+          if (self != sender()) sender() ! Persisted
         }
-      }
+      } else if (self != sender()) sender() ! NotPersisted
   }
 
   val receiveRecover: Receive = {
@@ -64,19 +75,21 @@ private object NotifierActor {
   def props(
     id: String,
     retryInterval: FiniteDuration,
-    mailSender: MailSender = new MailSender,
+    mailSender: MailSender,
     state: NotifierActorState = NotifierActorState()
-  ): Props = Props(new NotifierActor(id, retryInterval, mailSender, state, false))
+  )(implicit executor: ExecutionContext, timeout: Timeout): Props = Props(new NotifierActor(id, retryInterval, mailSender, state, false))
 
-  case class AddCommand(records: Seq[LogRecord])
-  case class RemoveCommand(records: Seq[LogRecord])
+  case class AddCommand(records: Records)
+  case class RemoveCommand(records: Records)
+  case object Persisted
+  case object NotPersisted
 
   case object GetRequest
-  case class GetResponse(records: Seq[LogRecord])
+  case class GetResponse(records: Records)
   case object NotifyRequest
   case object NotifyResponse
 
   sealed trait NotifierEvent
-  case class AddedEvent(records: Seq[LogRecord]) extends NotifierEvent
-  case class RemovedEvent(records: Seq[LogRecord]) extends NotifierEvent
+  sealed case class AddedEvent(records: Records) extends NotifierEvent
+  sealed case class RemovedEvent(records: Records) extends NotifierEvent
 }

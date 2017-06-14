@@ -1,12 +1,14 @@
 package com.defender.mail
 
-import com.defender.LogRecord
+import akka.util.Timeout
+import com.defender.Records
 
+import scala.concurrent.{ ExecutionContext, Future }
 import scalatags.Text.all._
 
-class MailSender(handlerOpt: Option[NotificationException => Unit]) {
-  def this() = this(None)
-  def send(records: Seq[LogRecord]): Boolean = {
+class MailSender(handlerOpt: Option[NotificationException => Unit])(implicit executor: ExecutionContext, timeout: Timeout) {
+  def this()(implicit executor: ExecutionContext, timeout: Timeout) = this(None)
+  def send(records: Records): Future[Option[Records]] = Future {
     if (records.nonEmpty) {
       try {
         Mail.send(
@@ -14,14 +16,14 @@ class MailSender(handlerOpt: Option[NotificationException => Unit]) {
           html(
             body(
               ol(
-                for (r <- records) yield li(
+                for (r <- records.toSeq) yield li(
                   s"${r.localDateTime}, username: ${r.username}, sevice: ${r.service}, message: ${r.message}"
                 )
               )
             )
           ).render
         )
-        true
+        Option(records)
       } catch {
         case e: Throwable => handlerOpt match {
           case Some(handler) => handler(NotificationException(e.getMessage, e))
@@ -29,7 +31,7 @@ class MailSender(handlerOpt: Option[NotificationException => Unit]) {
         }
       }
     }
-    false
+    None
   }
   def withHandler(handler: NotificationException => Unit) = new MailSender(Option(handler))
 }

@@ -58,7 +58,6 @@ object Configuration {
     object AuthLog {
       private lazy val AuthLogConf = WatchersConf.getConfig("auth-log")
 
-      lazy val Name = "auth-log"
       lazy val File: File = new File(AuthLogConf.getString("file"))
       lazy val PollInterval: FiniteDuration =
         Duration(AuthLogConf.getString("poll-interval")).asInstanceOf[FiniteDuration]

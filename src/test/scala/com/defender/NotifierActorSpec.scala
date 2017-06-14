@@ -1,66 +1,84 @@
 package com.defender
 
-import java.time.LocalDateTime
-import java.util.concurrent.atomic.AtomicInteger
-
 import akka.actor.ActorSystem
-import akka.testkit.{ ImplicitSender, TestKit }
+import akka.pattern.ask
+import akka.testkit.TestKit
 import com.defender.NotifierActor._
-import com.defender.mail.{ MailSender, NotificationException }
-import org.scalamock.scalatest.MockFactory
-import org.scalatest.{ BeforeAndAfterAll, WordSpecLike }
 
-import scala.concurrent.duration._
-
-class NotifierActorSpec extends TestKit(ActorSystem("NotifierActorSpec"))
-    with WordSpecLike
-    with ImplicitSender
-    with BeforeAndAfterAll
-    with MockFactory {
-  private val testActorId = new AtomicInteger(0)
-  def id: String = testActorId.incrementAndGet().toString
-
-  override def afterAll {
-    TestKit.shutdownActorSystem(system)
-  }
-
-  def receive: AfterWord = afterWord("receive")
-
-  def stubSender(records: Seq[LogRecord]): MailSender = {
-    val sender = stub[MailSender]
-    (sender.withHandler(_: NotificationException => Unit)).when(*).returns(sender)
-    (sender.send _).when(records).returns(true)
-    sender
-  }
-
+class NotifierActorSpec extends TestKit(ActorSystem("NotifierActorSpec")) with ActorBaseSpec {
   "A Notifier actor" when receive {
     "NotifyRequest" must {
       "notify recipients and update state" in {
-        val records = Seq(LogRecord(LocalDateTime.now(), "", "", ""))
-        val state = NotifierActorState(records)
-        val sender = stubSender(records)
-        val notifier = system.actorOf(NotifierActor.props(id, 1 minute, sender, state))
-
-        notifier ! NotifyRequest
-        expectMsg(NotifyResponse)
-        notifier ! GetRequest
-        expectMsg(GetResponse(Seq.empty))
+        val f = generateRecords()
+        for {
+          r <- f
+          (probe, notifier) <- newNotifier(r)
+          _ <- (notifier ? NotifyRequest)(timeout, probe.ref)
+          g <- (notifier ? GetRequest)(timeout, probe.ref)
+            .mapTo[GetResponse]
+            .map(_.records)
+        } yield {
+          g shouldBe empty
+        }
+      }
+    }
+    "RemoveCommand" must {
+      "update state" in {
+        val f1 = generateRecords()
+        val f2 = generateRecords()
+        val f3 = generateRecords()
+        for {
+          r1 <- f1
+          r2 <- f2
+          r3 <- f3
+          (probe, notifier) <- newNotifier(r1 ++ r2, sendResult = false)
+          rm1 <- (notifier ? RemoveCommand(Set(r1.head)))(timeout, probe.ref)
+          rm2 <- (notifier ? RemoveCommand(r3))(timeout, probe.ref)
+          g <- (notifier ? GetRequest)(timeout, probe.ref)
+            .mapTo[GetResponse]
+            .map(_.records)
+        } yield {
+          rm1 shouldBe Persisted
+          rm2 shouldBe NotPersisted
+          g should not contain r1.head
+        }
       }
     }
     "AddCommand" must {
-      "update state" in {
-        val records = Seq(LogRecord(LocalDateTime.now(), "", "", ""))
-        val state = NotifierActorState(records)
-        val sender = stubSender(records)
-        val notifier = system.actorOf(NotifierActor.props(id, 1 minute, sender, state))
-
-        notifier ! AddCommand(records)
-        within(300 millisecond) {
-          expectNoMsg(100 millisecond)
-          awaitAssert(() => {
-            notifier ! GetRequest
-            expectMsg(GetResponse(Seq.empty))
-          })
+      "must not persist event with same records" in {
+        val f1 = generateRecords()
+        val f2 = generateRecords()
+        for {
+          r1 <- f1
+          r2 <- f2
+          (probe, notifier) <- newNotifier(r1, sendResult = false)
+          a <- (notifier ? AddCommand(r1))(timeout, probe.ref)
+          r <- (notifier ? RemoveCommand(r1))(timeout, probe.ref)
+          g <- (notifier ? GetRequest)(timeout, probe.ref)
+            .mapTo[GetResponse]
+            .map(_.records)
+        } yield {
+          a shouldBe NotPersisted
+          r shouldBe Persisted
+          g shouldBe empty
+        }
+      }
+      "must not persist event with already removed records" in {
+        val f1 = generateRecords(min = 2)
+        val f2 = generateRecords()
+        for {
+          r1 <- f1
+          r2 <- f2
+          (probe, notifier) <- newNotifier(r1, sendResult = false)
+          rm1 <- (notifier ? RemoveCommand(r1.tail ++ r2))(timeout, probe.ref)
+          rm2 <- (notifier ? RemoveCommand(r2))(timeout, probe.ref)
+          g <- (notifier ? GetRequest)(timeout, probe.ref)
+            .mapTo[GetResponse]
+            .map(_.records)
+        } yield {
+          rm1 shouldBe Persisted
+          rm2 shouldBe NotPersisted
+          g should contain only r1.head
         }
       }
     }

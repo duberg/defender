@@ -1,9 +1,10 @@
-package com.defender
+package com.defender.http
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
+import com.defender.LogRecord
 import spray.json._
 
 trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
