@@ -55,9 +55,9 @@ object HttpService extends SLF4JLogging {
 
     log.info(s"Http service is up http://localhost:$port")
 
-    StdIn.readLine()
-    bindingFuture
-      .flatMap(_.unbind())
-      .onComplete(_ => system.terminate())
+    //    StdIn.readLine()
+    //    bindingFuture
+    //      .flatMap(_.unbind())
+    //      .onComplete(_ => system.terminate())
   }
 }

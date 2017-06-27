@@ -29,6 +29,8 @@ lazy val productionSettings = Seq(
 )
 
 lazy val commonSettings: Seq[Def.Setting[_]] = {
+  inConfig(Development)(developmentSettings) ++
+    inConfig(Production)(productionSettings) ++
     Seq(
       organization := "com.defender",
       version := "0.2.0-SNAPSHOT",
@@ -49,20 +51,23 @@ lazy val commonSettings: Seq[Def.Setting[_]] = {
       javaOptions += "-Xmx4G",
       parallelExecution in Test := true,
       testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-W", "10", "5"),
-      fork := true
+      fork := true,
+      maintainer := "Mark Duberg <scala@dr.com>",
+      packageSummary := "Intrusion Detection System",
+      packageDescription := "Intrusion Detection System for Ubuntu",
+      mainClass in Compile := Some("com.defender.http.HttpService"),
+      confDir := baseDirectory.value / "conf",
+      prepareBuild := {
+        taskKeyAll(test in Test).all(allProjectsFilter).value
+        taskKeyAll(compileScalastyle).all(allProjectsFilter).value
+      }
     )
 }
 
 lazy val rootSettings: Seq[Def.Setting[_]] = {
   commonSettings ++
-    inConfig(Development)(developmentSettings) ++
-    inConfig(Production)(productionSettings) ++
     Seq(
       name := "defender",
-      maintainer := "Mark Duberg <scala@dr.com>",
-      packageSummary := "Intrusion Detection System",
-      packageDescription := "Intrusion Detection System for Ubuntu",
-      mainClass in Compile := Some("com.defender.Boot"),
       daemonUser in Linux := name.value,
       daemonGroup in Linux := "adm", // group with read rights /var/log/auth.log
       defaultLinuxConfigLocation in Production := "/usr/share/defender/etc",
@@ -84,7 +89,6 @@ lazy val rootSettings: Seq[Def.Setting[_]] = {
             .withGroup("adm")
         )
       },
-      confDir := baseDirectory.value / "conf",
       appBaseConfDir := confDir.value / "base",
       appConf := {
         def configuration: Config = {
@@ -108,11 +112,7 @@ lazy val rootSettings: Seq[Def.Setting[_]] = {
         s"-Dconfig.base.file=${defaultLinuxInstallLocation.value}/${name.value}/etc/base.conf",
         s"-Dconfig.env.file=${defaultLinuxInstallLocation.value}/${name.value}/etc/production.conf",
         s"-Dlogback.configurationFile=${defaultLinuxInstallLocation.value}/${name.value}/etc/logback.xml"
-      ),
-      prepareBuild := {
-        taskKeyAll(test in Test).all(allProjectsFilter).value
-        taskKeyAll(compileScalastyle).all(allProjectsFilter).value
-      }
+      )
     )
 }
 
@@ -130,18 +130,35 @@ lazy val allProjectsFilter = ScopeFilter(
   inConfigurations(Compile)
 )
 
-def defenderModule(name: String): Project =
-  Project(id = name, base = file(name))
-    .settings(commonSettings)
+def defenderModule(name: String): Project = Project(
+    id = name,
+    base = file(name),
+    settings = commonSettings,
+    configurations = Seq(Development, Production)
+  ).enablePlugins(
+  JavaServerAppPackaging,
+  LinuxPlugin,
+  UniversalPlugin,
+  DebianPlugin,
+  SystemdPlugin
+)
 
 lazy val root = Project(
   id = "defender",
   base = file("."),
-  aggregate = aggregatedProjects,
   settings = rootSettings,
-  configurations = Seq(Development, Production)
+  configurations = Seq(Development, Production),
+  dependencies = Seq(
+    defenderApi,
+    defenderNotification,
+    defenderLogging,
+    defenderServices,
+    defenderHttp,
+    defenderTest
+  ),
+  aggregate = aggregatedProjects
 ).enablePlugins(
-  JavaServerAppPackaging ,
+  JavaServerAppPackaging,
   LinuxPlugin,
   UniversalPlugin,
   DebianPlugin,
