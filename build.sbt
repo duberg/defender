@@ -38,15 +38,17 @@ lazy val commonSettings: Seq[Def.Setting[_]] = {
         Resolver.typesafeRepo("releases"),
         Resolver.sonatypeRepo("releases")
       ),
-      parallelExecution in Test := true,
       scalacOptions ++= Seq(
         "-unchecked",
         "-deprecation",
         "-feature",
-        "-language:postfixOps"
+        "-language:postfixOps",
+        "-language:implicitConversions"
       ),
       compileScalastyle := (scalastyle in Compile).toTask("").value,
       javaOptions += "-Xmx4G",
+      parallelExecution in Test := true,
+      testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-W", "10", "5"),
       fork := true
     )
 }
@@ -116,6 +118,8 @@ lazy val rootSettings: Seq[Def.Setting[_]] = {
 
 lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   defenderApi,
+  defenderNotification,
+  defenderLogging,
   defenderServices,
   defenderHttp,
   defenderTest
@@ -147,45 +151,48 @@ lazy val root = Project(
 lazy val defenderApi = defenderModule("defender-api")
   .settings(libraryDependencies ++= Seq(
     akkaActor,
-    akkaHttp,
-    akkaHttpSprayJson,
+    akkaStream,
     akkaPersistence,
+    akkaPersistenceQuery,
     akkaSlf4j,
+    akkaTestKit,
+    akkaStreamTestKit,
+    akkaPersistenceInmemory,
+    akkaRemote,
+    akkaKryo,
     logback,
     leveldb,
     leveldbjni,
+    minlog,
     scalatags,
     javaxmail,
-    typesafeConfig
+    typesafeConfig,
+    scalatest,
+    scalamock
+  ))
+
+lazy val defenderLogging = defenderModule("defender-logging")
+  .dependsOn(defenderNotification % "test->test;compile->compile")
+  .settings(libraryDependencies ++= Seq(
+    scalaArm
+  ))
+
+lazy val defenderNotification = defenderModule("defender-notification")
+  .dependsOn(defenderApi % "test->test;compile->compile")
+  .settings(libraryDependencies ++= Seq(
+    javaxmail,
+    akkaTestKit
   ))
 
 lazy val defenderServices = defenderModule("defender-services")
-  .dependsOn(defenderApi)
+  .dependsOn(defenderLogging)
 
 lazy val defenderHttp = defenderModule("defender-http")
   .dependsOn(defenderServices)
   .settings(libraryDependencies ++= Seq(
-    akkaActor,
     akkaHttp,
-    akkaHttpSprayJson,
-    scalatags,
-    typesafeConfig
+    akkaHttpSprayJson
   ))
 
 lazy val defenderTest = defenderModule("defender-test")
   .dependsOn(defenderHttp)
-  .settings(libraryDependencies ++= Seq(
-    akkaActor,
-    akkaHttp,
-    akkaHttpSprayJson,
-    akkaPersistence,
-    akkaSlf4j,
-    logback,
-    javaxmail,
-    typesafeConfig,
-    akkaTestKit,
-    akkaHttpTestKit,
-    akkaPersistenceInmemory,
-    scalatest,
-    scalamock
-  ))

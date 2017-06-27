@@ -38,7 +38,7 @@
  </check>
  <check level="warning" class="org.scalastyle.scalariform.ParameterNumberChecker" enabled="true">
   <parameters>
-   <parameter name="maxParameters"><![CDATA[8]]></parameter>
+   <parameter name="maxParameters"><![CDATA[10]]></parameter>
   </parameters>
  </check>
  <check level="warning" class="org.scalastyle.scalariform.NoWhitespaceBeforeLeftBracketChecker" enabled="true"/>
@@ -49,9 +49,21 @@
  <check level="warning" class="org.scalastyle.scalariform.NoFinalizeChecker" enabled="true"/>
  <check level="warning" class="org.scalastyle.scalariform.CovariantEqualsChecker" enabled="true"/>
  <check level="warning" class="org.scalastyle.scalariform.StructuralTypeChecker" enabled="true"/>
+ <check level="warning" class="org.scalastyle.file.RegexChecker" enabled="true">
+  <parameters>
+   <parameter name="regex">
+    <![CDATA[ println ]]>
+   </parameter>
+  </parameters>
+ </check>
  <check level="warning" class="org.scalastyle.scalariform.NumberOfTypesChecker" enabled="true">
   <parameters>
    <parameter name="maxTypes"><![CDATA[30]]></parameter>
+  </parameters>
+ </check>
+ <check enabled="true" class="org.scalastyle.scalariform.CyclomaticComplexityChecker" level="warning">
+  <parameters>
+   <parameter name="maximum"><![CDATA[10]]></parameter>
   </parameters>
  </check>
  <check level="warning" class="org.scalastyle.scalariform.UppercaseLChecker" enabled="true"/>
@@ -63,7 +75,7 @@
  </check>
  <check level="warning" class="org.scalastyle.scalariform.MethodNamesChecker" enabled="true">
   <parameters>
-   <parameter name="regex"><![CDATA[^[a-z][A-Za-z0-9]*|==|>|<$]]></parameter>
+   <parameter name="regex"><![CDATA[^[a-z][A-Za-z0-9]*|==|>|<|\+|-$]]></parameter>
   </parameters>
  </check>
  <check level="warning" class="org.scalastyle.scalariform.NumberOfMethodsInTypeChecker" enabled="true">
@@ -74,5 +86,4 @@
  <check level="warning" class="org.scalastyle.scalariform.PublicMethodsHaveTypeChecker" enabled="true"/>
  <check level="warning" class="org.scalastyle.file.NewLineAtEofChecker" enabled="true"/>
  <check level="warning" class="org.scalastyle.file.NoNewLineAtEofChecker" enabled="false"/>
- <check level="warning" class="org.scalastyle.scalariform.ImportGroupingChecker" enabled="true"/>
 </scalastyle>

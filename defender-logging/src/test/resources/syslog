@@ -1,0 +1,972 @@
+Jun 20 10:51:21 user anacron[11982]: Job `cron.daily' terminated
+Jun 20 10:51:21 user pptp[12194]: nm-pptp-service-12151 log[logecho:pptp_ctrl.c:719]: Echo Reply received.
+Jun 20 10:54:22 user pptp[12194]: message repeated 3 times: [ nm-pptp-service-12151 log[logecho:pptp_ctrl.c:719]: Echo Reply received.]
+Jun 20 10:54:22 user pptp[12194]: nm-pptp-service-12151 log[logecho:pptp_ctrl.c:721]: no more Echo Reply/Request packets will be reported.
+Jun 20 10:54:47 user /usr/lib/snapd/snapd[1049]: snapmgr.go:496: DEBUG: Next refresh scheduled for 2017-06-20 11:46:48.512104168 +0300 MSK.
+Jun 20 10:55:14 user anacron[11982]: Job `cron.weekly' started
+Jun 20 10:55:14 user anacron[13001]: Updated timestamp for job `cron.weekly' to 2017-06-20
+Jun 20 10:58:10 user anacron[11982]: Job `cron.weekly' terminated
+Jun 20 10:58:10 user anacron[11982]: Normal exit (2 jobs run)
+Jun 20 11:17:01 user CRON[13699]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 11:31:04 user dbus[1015]: [system] Activating service name='org.debian.apt' (using servicehelper)
+Jun 20 11:31:05 user AptDaemon: INFO: Initializing daemon
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon [INFO]: Initializing daemon
+Jun 20 11:31:05 user dbus[1015]: [system] Successfully activated service 'org.debian.apt'
+Jun 20 11:31:05 user AptDaemon.PackageKit: INFO: Initializing PackageKit compat layer
+Jun 20 11:31:05 user org.debian.apt[1015]: /usr/lib/python3/dist-packages/aptdaemon/worker/pkworker.py:35: PyGIWarning: PackageKitGlib was imported without specifying a version first. Use gi.require_version('PackageKitGlib', '1.0') before import to ensure that the right version gets loaded.
+Jun 20 11:31:05 user org.debian.apt[1015]:   from gi.repository import PackageKitGlib as pk
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.PackageKit [INFO]: Initializing PackageKit compat layer
+Jun 20 11:31:05 user AptDaemon: INFO: UpdateCache() was called
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon [INFO]: UpdateCache() was called
+Jun 20 11:31:05 user AptDaemon.Trans: INFO: Queuing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Trans [INFO]: Queuing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user AptDaemon.Worker: INFO: Simulating trans: /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Worker [INFO]: Simulating trans: /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user AptDaemon.Worker: INFO: Processing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Worker [INFO]: Processing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user AptDaemon.Worker: INFO: Updating cache
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Worker [INFO]: Updating cache
+Jun 20 11:31:22 user AptDaemon.Worker: INFO: Finished transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:22 user org.debian.apt[1015]: 11:31:22 AptDaemon.Worker [INFO]: Finished transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:42:05 user AptDaemon: INFO: Quitting due to inactivity
+Jun 20 11:42:05 user org.debian.apt[1015]: 11:42:05 AptDaemon [INFO]: Quitting due to inactivity
+Jun 20 11:42:05 user org.debian.apt[1015]: 11:42:05 AptDaemon [INFO]: Quitting was requested
+Jun 20 11:42:05 user AptDaemon: INFO: Quitting was requested
+Jun 20 11:49:49 user /usr/lib/snapd/snapd[1049]: snapmgr.go:422: No snaps to auto-refresh found
+Jun 20 11:49:49 user snapd[1049]: 2017/06/20 11:49:49.004039 snapmgr.go:422: No snaps to auto-refresh found
+Jun 20 11:54:47 user /usr/lib/snapd/snapd[1049]: snapmgr.go:496: DEBUG: Next refresh scheduled for 2017-06-20 21:40:15.168873643 +0300 MSK.
+Jun 20 12:17:01 user CRON[16083]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 13:17:01 user CRON[20821]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 14:17:01 user CRON[24186]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 15:05:12 user NetworkManager[1043]: <info>  [1497960312.3533] manager: sleep requested (sleeping: no  enabled: yes)
+Jun 20 15:05:12 user NetworkManager[1043]: <info>  [1497960312.3533] manager: sleeping...
+Jun 20 15:05:12 user NetworkManager[1043]: <info>  [1497960312.3535] manager: NetworkManager state is now ASLEEP
+Jun 20 15:05:13 user systemd[1]: Reached target Sleep.
+Jun 20 15:05:13 user systemd[1]: Starting Suspend...
+Jun 20 15:05:13 user systemd-sleep[26995]: Failed to connect to non-global ctrl_ifname: (nil)  error: No such file or directory
+Jun 20 15:05:13 user systemd-sleep[26997]: /lib/systemd/system-sleep/wpasupplicant failed with error code 255.
+Jun 20 15:05:13 user systemd-sleep[26995]: Suspending system...
+Jun 20 18:54:27 user kernel: [214561.234218] PM: Syncing filesystems ... done.
+Jun 20 18:54:27 user kernel: [214561.320674] PM: Preparing system for sleep (mem)
+Jun 20 18:54:27 user kernel: [214561.320883] Freezing user space processes ... (elapsed 0.002 seconds) done.
+Jun 20 18:54:27 user kernel: [214561.323851] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+Jun 20 18:54:27 user kernel: [214561.325320] PM: Suspending system (mem)
+Jun 20 18:54:27 user kernel: [214561.325338] Suspending console(s) (use no_console_suspend to debug)
+Jun 20 18:54:27 user kernel: [214561.325872] sd 2:0:0:0: [sdb] Synchronizing SCSI cache
+Jun 20 18:54:27 user kernel: [214561.325877] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+Jun 20 18:54:27 user kernel: [214561.326031] sd 2:0:0:0: [sdb] Stopping disk
+Jun 20 18:54:27 user kernel: [214561.326547] serial 00:03: disabled
+Jun 20 18:54:27 user kernel: [214561.326553] serial 00:03: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.326870] parport_pc 00:02: disabled
+Jun 20 18:54:27 user kernel: [214561.328338] sd 0:0:0:0: [sda] Stopping disk
+Jun 20 18:54:27 user kernel: [214561.866326] PM: suspend of devices complete after 540.633 msecs
+Jun 20 18:54:27 user kernel: [214561.866918] PM: late suspend of devices complete after 0.590 msecs
+Jun 20 18:54:27 user kernel: [214561.867649] pcieport 0000:00:09.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867650] pcieport 0000:00:07.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867657] r8169 0000:04:00.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867763] ohci-pci 0000:00:14.5: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867902] ehci-pci 0000:00:13.2: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867931] ohci-pci 0000:00:13.1: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867949] ohci-pci 0000:00:13.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867979] ehci-pci 0000:00:12.2: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.868009] ohci-pci 0000:00:12.1: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.868011] ohci-pci 0000:00:12.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.882251] PM: noirq suspend of devices complete after 15.330 msecs
+Jun 20 18:54:27 user kernel: [214561.882954] ACPI: Preparing to enter system sleep state S3
+Jun 20 18:54:27 user kernel: [214561.884200] PM: Saving platform NVS memory
+Jun 20 18:54:27 user kernel: [214561.884202] Disabling non-boot CPUs ...
+Jun 20 18:54:27 user kernel: [214561.884517] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.884558] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.886336] smpboot: CPU 1 is now offline
+Jun 20 18:54:27 user kernel: [214561.899002] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.899044] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.900067] smpboot: CPU 2 is now offline
+Jun 20 18:54:27 user kernel: [214561.914892] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.914895] Broke affinity for irq 18
+Jun 20 18:54:27 user kernel: [214561.914933] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.915952] smpboot: CPU 3 is now offline
+Jun 20 18:54:27 user kernel: [214561.931227] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.931232] Broke affinity for irq 18
+Jun 20 18:54:27 user kernel: [214561.931238] Broke affinity for irq 22
+Jun 20 18:54:27 user kernel: [214561.931285] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.932320] smpboot: CPU 4 is now offline
+Jun 20 18:54:27 user kernel: [214561.947041] Broke affinity for irq 1
+Jun 20 18:54:27 user kernel: [214561.947050] Broke affinity for irq 9
+Jun 20 18:54:27 user kernel: [214561.947053] Broke affinity for irq 12
+Jun 20 18:54:27 user kernel: [214561.947061] Broke affinity for irq 16
+Jun 20 18:54:27 user kernel: [214561.947064] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.947067] Broke affinity for irq 18
+Jun 20 18:54:27 user kernel: [214561.947069] Broke affinity for irq 19
+Jun 20 18:54:27 user kernel: [214561.947072] Broke affinity for irq 22
+Jun 20 18:54:27 user kernel: [214561.947114] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.948144] smpboot: CPU 5 is now offline
+Jun 20 18:54:27 user kernel: [214561.963992] ACPI: Low-level resume complete
+Jun 20 18:54:27 user kernel: [214561.964027] PM: Restoring platform NVS memory
+Jun 20 18:54:27 user kernel: [214561.964049] PCI-DMA: Resuming GART IOMMU
+Jun 20 18:54:27 user kernel: [214561.964049] PCI-DMA: Restoring GART aperture settings
+Jun 20 18:54:27 user kernel: [214561.964054] LVT offset 0 assigned for vector 0x400
+Jun 20 18:54:27 user kernel: [214561.964332] Enabling non-boot CPUs ...
+Jun 20 18:54:27 user kernel: [214561.980025] x86: Booting SMP configuration:
+Jun 20 18:54:27 user kernel: [214561.980026] smpboot: Booting Node 0 Processor 1 APIC 0x11
+Jun 20 18:54:27 user kernel: [214561.983062]  cache: parent cpu1 should not be sleeping
+Jun 20 18:54:27 user kernel: [214561.983216] CPU1 is up
+Jun 20 18:54:27 user kernel: [214562.004153] smpboot: Booting Node 0 Processor 2 APIC 0x12
+Jun 20 18:54:27 user kernel: [214562.007051]  cache: parent cpu2 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.007204] CPU2 is up
+Jun 20 18:54:27 user kernel: [214562.028172] smpboot: Booting Node 0 Processor 3 APIC 0x13
+Jun 20 18:54:27 user kernel: [214562.031163]  cache: parent cpu3 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.031318] CPU3 is up
+Jun 20 18:54:27 user kernel: [214562.052208] smpboot: Booting Node 0 Processor 4 APIC 0x14
+Jun 20 18:54:27 user kernel: [214562.055157]  cache: parent cpu4 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.055312] CPU4 is up
+Jun 20 18:54:27 user kernel: [214562.076245] smpboot: Booting Node 0 Processor 5 APIC 0x15
+Jun 20 18:54:27 user kernel: [214562.079300]  cache: parent cpu5 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.079457] CPU5 is up
+Jun 20 18:54:27 user kernel: [214562.087655] ACPI: Waking up from system sleep state S3
+Jun 20 18:54:27 user kernel: [214562.088940] ohci-pci 0000:00:12.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.088941] ohci-pci 0000:00:12.1: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.088979] ohci-pci 0000:00:13.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089035] ohci-pci 0000:00:13.1: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089139] ohci-pci 0000:00:14.5: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089342] pcieport 0000:00:07.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089345] pcieport 0000:00:09.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104064] ehci-pci 0000:00:12.2: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104078] ehci-pci 0000:00:13.2: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104210] PM: noirq resume of devices complete after 15.550 msecs
+Jun 20 18:54:27 user kernel: [214562.104658] PM: early resume of devices complete after 0.418 msecs
+Jun 20 18:54:27 user kernel: [214562.104835] rtc_cmos 00:01: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104871] r8169 0000:04:00.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104876] usb usb8: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.104879] usb usb9: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.104880] usb usb10: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.104881] usb usb11: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.106290] parport_pc 00:02: activated
+Jun 20 18:54:27 user kernel: [214562.111554] serial 00:03: activated
+Jun 20 18:54:27 user kernel: [214562.117347] [drm] PCIE GART of 512M enabled (table at 0x00000000C0040000).
+Jun 20 18:54:27 user kernel: [214562.117419] radeon 0000:01:05.0: WB enabled
+Jun 20 18:54:27 user kernel: [214562.117421] radeon 0000:01:05.0: fence driver on ring 0 use gpu addr 0x00000000a0000c00 and cpu addr 0xffff8800ca33bc00
+Jun 20 18:54:27 user kernel: [214562.148525] sd 0:0:0:0: [sda] Starting disk
+Jun 20 18:54:27 user kernel: [214562.148556] sd 2:0:0:0: [sdb] Starting disk
+Jun 20 18:54:27 user kernel: [214562.150379] [drm] ring test on 0 succeeded in 0 usecs
+Jun 20 18:54:27 user kernel: [214562.150420] [drm] ib test on ring 0 succeeded in 0 usecs
+Jun 20 18:54:27 user kernel: [214562.167984] r8169 0000:04:00.0 enp4s0: link down
+Jun 20 18:54:28 user kernel: [214562.334462] PM: resume of devices complete after 229.794 msecs
+Jun 20 18:54:28 user kernel: [214562.334731] PM: Finishing wakeup.
+Jun 20 18:54:28 user kernel: [214562.334732] Restarting tasks ... done.
+Jun 20 18:54:28 user kernel: [214562.427929] ata6: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214562.431992] ata4: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214562.432034] ata5: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214562.439978] ata2: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214563.003954] ata1: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+Jun 20 18:54:28 user kernel: [214563.009283] ata1.00: configured for UDMA/133
+Jun 20 18:54:28 user systemd[1]: Time has been changed
+Jun 20 18:54:28 user systemd-sleep[26995]: Failed to connect to non-global ctrl_ifname: (nil)  error: No such file or directory
+Jun 20 18:54:28 user NetworkManager[1043]: <info>  [1497974067.3721] device (enp4s0): link disconnected (deferring action for 4 seconds)
+Jun 20 18:54:28 user systemd[1905]: Time has been changed
+Jun 20 18:54:28 user systemd-sleep[26995]: System resumed.
+Jun 20 18:54:28 user systemd[1]: snapd.refresh.timer: Adding 3h 10min 41.804387s random time.
+Jun 20 18:54:28 user systemd[1]: apt-daily.timer: Adding 9h 43min 31.247842s random time.
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2410] device (enp4s0): link connected
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2414] device (enp4s0): DHCPv4 lease renewal requested
+Jun 20 18:54:30 user kernel: [214565.204951] r8169 0000:04:00.0 enp4s0: link up
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2576] dhcp4 (enp4s0): canceled DHCP transaction, DHCP client pid 12108
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2576] dhcp4 (enp4s0): state changed bound -> done
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2586] dhcp4 (enp4s0): activation: beginning transaction (timeout in 45 seconds)
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2616] dhcp4 (enp4s0): dhclient started with pid 27145
+Jun 20 18:54:30 user dhclient[27145]: DHCPREQUEST of 192.168.1.62 on enp4s0 to 255.255.255.255 port 67 (xid=0x21866a87)
+Jun 20 18:54:30 user dhclient[27145]: DHCPACK of 192.168.1.62 from 192.168.1.1
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4158]   address 192.168.1.62
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4158]   plen 24 (255.255.255.0)
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   gateway 192.168.1.1
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   server identifier 192.168.1.1
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   lease time 86400
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   hostname 'user'
+Jun 20 18:54:30 user dbus[1015]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service'
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   nameserver '192.168.1.1'
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4160] dhcp4 (enp4s0): state changed unknown -> bound
+Jun 20 18:54:30 user dhclient[27145]: bound to 192.168.1.62 -- renewal in 34180 seconds.
+Jun 20 18:54:30 user systemd[1]: Starting Network Manager Script Dispatcher Service...
+Jun 20 18:54:30 user dbus[1015]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
+Jun 20 18:54:30 user systemd[1]: Started Network Manager Script Dispatcher Service.
+Jun 20 18:54:30 user nm-dispatcher: req:1 'dhcp4-change' [enp4s0]: new request (1 scripts)
+Jun 20 18:54:30 user nm-dispatcher: req:1 'dhcp4-change' [enp4s0]: start running ordered scripts...
+Jun 20 18:54:32 user kernel: [214567.812078] ata3: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+Jun 20 18:54:32 user kernel: [214567.815051] ata3.00: configured for UDMA/133
+Jun 20 18:54:32 user systemd-sleep[27106]: /lib/systemd/system-sleep/wpasupplicant failed with error code 255.
+Jun 20 18:54:32 user systemd[1]: Started Suspend.
+Jun 20 18:54:32 user systemd[1]: sleep.target: Unit not needed anymore. Stopping.
+Jun 20 18:54:32 user systemd[1]: Stopped target Sleep.
+Jun 20 18:54:32 user systemd[1]: Reached target Suspend.
+Jun 20 18:54:32 user systemd[1]: suspend.target: Unit is bound to inactive unit systemd-suspend.service. Stopping, too.
+Jun 20 18:54:32 user systemd[1]: Stopped target Suspend.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9002] manager: wake requested (sleeping: yes  enabled: yes)
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9002] manager: waking up...
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9004] device (enp4s0): state change: activated -> unmanaged (reason 'sleeping') [100 10 37]
+Jun 20 18:54:32 user systemd[1]: Started Run anacron jobs at resume.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9327] dhcp4 (enp4s0): canceled DHCP transaction, DHCP client pid 27145
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9327] dhcp4 (enp4s0): state changed bound -> done
+Jun 20 18:54:32 user avahi-daemon[979]: Withdrawing address record for 192.168.1.62 on enp4s0.
+Jun 20 18:54:32 user avahi-daemon[979]: Leaving mDNS multicast group on interface enp4s0.IPv4 with address 192.168.1.62.
+Jun 20 18:54:32 user avahi-daemon[979]: Interface enp4s0.IPv4 no longer relevant for mDNS.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9342] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:32 user pptp[12194]: nm-pptp-service-12151 log[callmgr_main:pptp_callmgr.c:245]: Closing connection (unhandled)
+Jun 20 18:54:32 user pptp[12194]: nm-pptp-service-12151 log[ctrlp_rep:pptp_ctrl.c:259]: Sent control packet type is 12 'Call-Clear-Request'
+Jun 20 18:54:32 user pptp[12194]: nm-pptp-service-12151 log[call_callback:pptp_callmgr.c:84]: Closing connection (call state)
+Jun 20 18:54:32 user NetworkManager[1043]: Modem hangup
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 8 / phase 'network'
+Jun 20 18:54:32 user NetworkManager[1043]: Connect time 489.2 minutes.
+Jun 20 18:54:32 user NetworkManager[1043]: Sent 11798965 bytes, received 94930649 bytes.
+Jun 20 18:54:32 user avahi-daemon[979]: Withdrawing address record for fe80::be7f:db8e:b5f5:4910 on enp4s0.
+Jun 20 18:54:32 user avahi-daemon[979]: Leaving mDNS multicast group on interface enp4s0.IPv6 with address fe80::be7f:db8e:b5f5:4910.
+Jun 20 18:54:32 user avahi-daemon[979]: Interface enp4s0.IPv6 no longer relevant for mDNS.
+Jun 20 18:54:32 user systemd[1]: Started Run anacron jobs.
+Jun 20 18:54:32 user pppd[12159]: Modem hangup
+Jun 20 18:54:32 user pppd[12159]: Connect time 489.2 minutes.
+Jun 20 18:54:32 user pppd[12159]: Sent 11798965 bytes, received 94930649 bytes.
+Jun 20 18:54:32 user NetworkManager[1043]: MPPE disabled
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 10 / phase 'terminate'
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 5 / phase 'establish'
+Jun 20 18:54:32 user pppd[12159]: MPPE disabled
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 5 / phase 'establish'
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 11 / phase 'disconnect'
+Jun 20 18:54:32 user NetworkManager[1043]: Connection terminated.
+Jun 20 18:54:32 user pppd[12159]: Connection terminated.
+Jun 20 18:54:32 user anacron[27187]: Anacron 2.3 started on 2017-06-20
+Jun 20 18:54:32 user anacron[27187]: Normal exit (0 jobs run)
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: Terminated ppp daemon with PID 12159.
+Jun 20 18:54:32 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:32 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:32 user dnsmasq[1211]: using nameserver 8.8.4.4#53
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 1 / phase 'dead'
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_exit_notify): cleaning up
+Jun 20 18:54:32 user pppd[12159]: Exit.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9972] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9973] manager: NetworkManager state is now CONNECTED_SITE
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9974] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0145] manager: NetworkManager state is now DISCONNECTED
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0365] dns-mgr: Removing DNS information from /sbin/resolvconf
+Jun 20 18:54:33 user dnsmasq[1211]: no servers found in /var/run/dnsmasq/resolv.conf, will retry
+Jun 20 18:54:33 user NetworkManager[1043]: <error> [1497974073.0723] platform-linux: do-change-link[23]: failure changing link: failure 19 (No such device)
+Jun 20 18:54:33 user nm-dispatcher: req:2 'vpn-down' [ppp0]: new request (1 scripts)
+Jun 20 18:54:33 user nm-dispatcher: req:2 'vpn-down' [ppp0]: start running ordered scripts...
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0740] device (enp4s0): state change: unmanaged -> unavailable (reason 'managed') [10 20 2]
+Jun 20 18:54:33 user nm-dispatcher: req:3 'down' [enp4s0]: new request (1 scripts)
+Jun 20 18:54:33 user kernel: [214568.038774] IPv6: ADDRCONF(NETDEV_UP): enp4s0: link is not ready
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0908] device (enp4s0): link disconnected
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0914] devices removed (path: /sys/devices/virtual/net/ppp0, iface: ppp0)
+Jun 20 18:54:33 user kernel: [214568.054746] r8169 0000:04:00.0 enp4s0: link down
+Jun 20 18:54:33 user kernel: [214568.054762] r8169 0000:04:00.0 enp4s0: link down
+Jun 20 18:54:33 user kernel: [214568.054891] IPv6: ADDRCONF(NETDEV_UP): enp4s0: link is not ready
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0920] vpn-connection[0x2169230,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN plugin: state changed: stopping (5)
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0921] vpn-connection[0x2169230,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN service disappeared
+Jun 20 18:54:33 user NetworkManager[1043]: <error> [1497974073.0980] platform-linux: do-change-link[23]: failure changing link: failure 19 (No such device)
+Jun 20 18:54:33 user NetworkManager[1043]: <warn>  [1497974073.0980] device (ppp0): failed to disable userspace IPv6LL address handling
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:33 user nm-dispatcher: req:3 'down' [enp4s0]: start running ordered scripts...
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8952] device (enp4s0): link connected
+Jun 20 18:54:36 user kernel: [214571.859303] r8169 0000:04:00.0 enp4s0: link up
+Jun 20 18:54:36 user kernel: [214571.859322] IPv6: ADDRCONF(NETDEV_CHANGE): enp4s0: link becomes ready
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8957] device (enp4s0): state change: unavailable -> disconnected (reason 'carrier-changed') [20 30 40]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8963] policy: auto-activating connection 'Wired connection 1'
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8972] device (enp4s0): Activation: starting connection 'Wired connection 1' (e2cf5b07-8d15-3ead-a055-e331471f09d0)
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8973] device (enp4s0): state change: disconnected -> prepare (reason 'none') [30 40 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8974] manager: NetworkManager state is now CONNECTING
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8977] device (enp4s0): state change: prepare -> config (reason 'none') [40 50 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8980] device (enp4s0): state change: config -> ip-config (reason 'none') [50 70 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8982] dhcp4 (enp4s0): activation: beginning transaction (timeout in 45 seconds)
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9015] dhcp4 (enp4s0): dhclient started with pid 27299
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user dhclient[27299]: DHCPREQUEST of 192.168.1.62 on enp4s0 to 255.255.255.255 port 67 (xid=0xd101a3f)
+Jun 20 18:54:36 user dhclient[27299]: DHCPACK of 192.168.1.62 from 192.168.1.1
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   address 192.168.1.62
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   plen 24 (255.255.255.0)
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   gateway 192.168.1.1
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   server identifier 192.168.1.1
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   lease time 86400
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9375]   hostname 'user'
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9375]   nameserver '192.168.1.1'
+Jun 20 18:54:36 user avahi-daemon[979]: Joining mDNS multicast group on interface enp4s0.IPv4 with address 192.168.1.62.
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9375] dhcp4 (enp4s0): state changed unknown -> bound
+Jun 20 18:54:36 user avahi-daemon[979]: New relevant interface enp4s0.IPv4 for mDNS.
+Jun 20 18:54:36 user avahi-daemon[979]: Registering new address record for 192.168.1.62 on enp4s0.IPv4.
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9405] device (enp4s0): state change: ip-config -> ip-check (reason 'none') [70 80 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9413] device (enp4s0): state change: ip-check -> secondaries (reason 'none') [80 90 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9414] policy: set 'Wired connection 1' (enp4s0) as default for IPv4 routing and DNS
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9415] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:36 user dhclient[27299]: bound to 192.168.1.62 -- renewal in 33456 seconds.
+Jun 20 18:54:36 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:36 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:36 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9949] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: Started the VPN service, PID 27341
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.0046] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: Saw the service appear; activating connection
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.0994] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN connection: (ConnectInteractive) reply received
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: pppd started with pid 27349
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1073] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN plugin: state changed: starting (3)
+Jun 20 18:54:37 user pppd[27349]: Plugin /usr/lib/pppd/2.4.7/nm-pptp-pppd-plugin.so loaded.
+Jun 20 18:54:37 user NetworkManager[1043]: Plugin /usr/lib/pppd/2.4.7/nm-pptp-pppd-plugin.so loaded.
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (plugin_init): initializing
+Jun 20 18:54:37 user pppd[27349]: pppd 2.4.7 started by root, uid 0
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 3 / phase 'serial connection'
+Jun 20 18:54:37 user pppd[27349]: Using interface ppp0
+Jun 20 18:54:37 user NetworkManager[1043]: nm_device_get_device_type: assertion 'NM_IS_DEVICE (self)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: Using interface ppp0
+Jun 20 18:54:37 user NetworkManager[1043]: Connect: ppp0 <--> /dev/pts/18
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 5 / phase 'establish'
+Jun 20 18:54:37 user pppd[27349]: Connect: ppp0 <--> /dev/pts/18
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1171] manager: (ppp0): new Generic device (/org/freedesktop/NetworkManager/Devices/23)
+Jun 20 18:54:37 user pptp[27355]: nm-pptp-service-27341 log[main:pptp.c:350]: The synchronous pptp option is NOT activated
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1252] dns-mgr: Removing DNS information from /sbin/resolvconf
+Jun 20 18:54:37 user dnsmasq[1211]: no servers found in /var/run/dnsmasq/resolv.conf, will retry
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1593] devices added (path: /sys/devices/virtual/net/ppp0, iface: ppp0)
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1593] device added (path: /sys/devices/virtual/net/ppp0, iface: ppp0): no ifupdown configuration found.
+Jun 20 18:54:37 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_rep:pptp_ctrl.c:259]: Sent control packet type is 1 'Start-Control-Connection-Request'
+Jun 20 18:54:37 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:781]: Received Start Control Connection Reply
+Jun 20 18:54:37 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:815]: Client connection established.
+Jun 20 18:54:38 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_rep:pptp_ctrl.c:259]: Sent control packet type is 7 'Outgoing-Call-Request'
+Jun 20 18:54:38 user avahi-daemon[979]: Joining mDNS multicast group on interface enp4s0.IPv6 with address fe80::be7f:db8e:b5f5:4910.
+Jun 20 18:54:38 user avahi-daemon[979]: New relevant interface enp4s0.IPv6 for mDNS.
+Jun 20 18:54:38 user avahi-daemon[979]: Registering new address record for fe80::be7f:db8e:b5f5:4910 on enp4s0.*.
+Jun 20 18:54:38 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:900]: Received Outgoing Call Reply.
+Jun 20 18:54:38 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:939]: Outgoing call established (call ID 49030, peer's call ID 26496).
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 6 / phase 'authenticate'
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (get_credentials): passwd-hook, requesting credentials...
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (get_credentials): got credentials from NetworkManager-pptp
+Jun 20 18:54:38 user pppd[27349]: CHAP authentication succeeded
+Jun 20 18:54:38 user NetworkManager[1043]: CHAP authentication succeeded
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 8 / phase 'network'
+Jun 20 18:54:38 user pppd[27349]: MPPE 128-bit stateless compression enabled
+Jun 20 18:54:38 user NetworkManager[1043]: MPPE 128-bit stateless compression enabled
+Jun 20 18:54:39 user pppd[27349]: local  IP address 10.0.0.100
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4112] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:39 user NetworkManager[1043]: local  IP address 10.0.0.100
+Jun 20 18:54:39 user NetworkManager[1043]: remote IP address 10.0.0.1
+Jun 20 18:54:39 user NetworkManager[1043]: primary   DNS address 8.8.8.8
+Jun 20 18:54:39 user NetworkManager[1043]: secondary DNS address 8.8.4.4
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 9 / phase 'running'
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_ip_up): ip-up event
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_ip_up): sending Ip4Config to NetworkManager-pptp...
+Jun 20 18:54:39 user pppd[27349]: remote IP address 10.0.0.1
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: PPTP service (IP Config Get) reply received.
+Jun 20 18:54:39 user pppd[27349]: primary   DNS address 8.8.8.8
+Jun 20 18:54:39 user pppd[27349]: secondary DNS address 8.8.4.4
+Jun 20 18:54:39 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:39 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:39 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4539] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN connection: (IP4 Config Get) reply received from old-style plugin
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4548] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: VPN Gateway: 52.14.195.72
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: Tunnel Device: "ppp0"
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: IPv4 configuration:
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal Address: 10.0.0.100
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal Prefix: 32
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal Point-to-Point Address: 10.0.0.1
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Maximum Segment Size (MSS): 0
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Forbid Default Route: no
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal DNS: 8.8.8.8
+Jun 20 18:54:39 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal DNS: 8.8.4.4
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4551] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   DNS Domain: '(none)'
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4551] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: No IPv6 configuration
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4551] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: VPN plugin: state changed: started (4)
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4570] dns-mgr: Removing DNS information from /sbin/resolvconf
+Jun 20 18:54:39 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:39 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:40 user dnsmasq[1211]: no servers found in /var/run/dnsmasq/resolv.conf, will retry
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.4998] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: VPN connection: (IP Config Get) complete
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5009] device (enp4s0): state change: secondaries -> activated (reason 'none') [90 100 0]
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5011] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5013] manager: NetworkManager state is now CONNECTED_SITE
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5013] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5105] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:41 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:41 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:41 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5560] device (enp4s0): Activation: successful, device activated.
+Jun 20 18:54:41 user nm-dispatcher: req:4 'up' [enp4s0]: new request (1 scripts)
+Jun 20 18:54:41 user nm-dispatcher: req:4 'up' [enp4s0]: start running ordered scripts...
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5645] manager: NetworkManager state is now CONNECTED_LOCAL
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5646] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5647] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:41 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:41 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:41 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:42 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 8.8.4.4#53
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:42 user nm-dispatcher: req:5 'vpn-up' [ppp0]: new request (1 scripts)
+Jun 20 18:54:42 user nm-dispatcher: req:5 'vpn-up' [ppp0]: start running ordered scripts...
+Jun 20 18:54:42 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:42 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:55:00 user systemd[1905]: Time has been changed
+Jun 20 18:55:00 user systemd[1]: Time has been changed
+Jun 20 18:55:00 user systemd[1]: snapd.refresh.timer: Adding 1h 53min 16.668924s random time.
+Jun 20 18:55:00 user systemd[1]: apt-daily.timer: Adding 11h 43min 43.690300s random time.
+Jun 20 18:55:39 user pptp[27403]: nm-pptp-service-27341 log[logecho:pptp_ctrl.c:719]: Echo Reply received.
+Jun 20 19:04:41 user pptp[27403]: message repeated 9 times: [ nm-pptp-service-27341 log[logecho:pptp_ctrl.c:719]: Echo Reply received.]
+Jun 20 19:04:41 user pptp[27403]: nm-pptp-service-27341 log[logecho:pptp_ctrl.c:721]: no more Echo Reply/Request packets will be reported.
+Jun 20 19:17:01 user CRON[28415]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 20:10:13 user gnome-session[2137]: Nautilus-Share-Message: Called "net usershare info" but it failed: Failed to execute child process "net" (No such file or directory)
+Jun 20 20:10:27 user org.gnome.zeitgeist.SimpleIndexer[1994]: ** (zeitgeist-fts:2771): WARNING **: Unable to get info on application://nautilus-autostart.desktop
+Jun 20 10:51:21 user anacron[11982]: Job `cron.daily' terminated
+Jun 20 10:51:21 user pptp[12194]: nm-pptp-service-12151 log[logecho:pptp_ctrl.c:719]: Echo Reply received.
+Jun 20 10:54:22 user pptp[12194]: message repeated 3 times: [ nm-pptp-service-12151 log[logecho:pptp_ctrl.c:719]: Echo Reply received.]
+Jun 20 10:54:22 user pptp[12194]: nm-pptp-service-12151 log[logecho:pptp_ctrl.c:721]: no more Echo Reply/Request packets will be reported.
+Jun 20 10:54:47 user /usr/lib/snapd/snapd[1049]: snapmgr.go:496: DEBUG: Next refresh scheduled for 2017-06-20 11:46:48.512104168 +0300 MSK.
+Jun 20 10:55:14 user anacron[11982]: Job `cron.weekly' started
+Jun 20 10:55:14 user anacron[13001]: Updated timestamp for job `cron.weekly' to 2017-06-20
+Jun 20 10:58:10 user anacron[11982]: Job `cron.weekly' terminated
+Jun 20 10:58:10 user anacron[11982]: Normal exit (2 jobs run)
+Jun 20 11:17:01 user CRON[13699]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 11:31:04 user dbus[1015]: [system] Activating service name='org.debian.apt' (using servicehelper)
+Jun 20 11:31:05 user AptDaemon: INFO: Initializing daemon
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon [INFO]: Initializing daemon
+Jun 20 11:31:05 user dbus[1015]: [system] Successfully activated service 'org.debian.apt'
+Jun 20 11:31:05 user AptDaemon.PackageKit: INFO: Initializing PackageKit compat layer
+Jun 20 11:31:05 user org.debian.apt[1015]: /usr/lib/python3/dist-packages/aptdaemon/worker/pkworker.py:35: PyGIWarning: PackageKitGlib was imported without specifying a version first. Use gi.require_version('PackageKitGlib', '1.0') before import to ensure that the right version gets loaded.
+Jun 20 11:31:05 user org.debian.apt[1015]:   from gi.repository import PackageKitGlib as pk
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.PackageKit [INFO]: Initializing PackageKit compat layer
+Jun 20 11:31:05 user AptDaemon: INFO: UpdateCache() was called
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon [INFO]: UpdateCache() was called
+Jun 20 11:31:05 user AptDaemon.Trans: INFO: Queuing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Trans [INFO]: Queuing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user AptDaemon.Worker: INFO: Simulating trans: /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Worker [INFO]: Simulating trans: /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user AptDaemon.Worker: INFO: Processing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Worker [INFO]: Processing transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:05 user AptDaemon.Worker: INFO: Updating cache
+Jun 20 11:31:05 user org.debian.apt[1015]: 11:31:05 AptDaemon.Worker [INFO]: Updating cache
+Jun 20 11:31:22 user AptDaemon.Worker: INFO: Finished transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:31:22 user org.debian.apt[1015]: 11:31:22 AptDaemon.Worker [INFO]: Finished transaction /org/debian/apt/transaction/ba2c29f61d83407a8f9b09dba6030282
+Jun 20 11:42:05 user AptDaemon: INFO: Quitting due to inactivity
+Jun 20 11:42:05 user org.debian.apt[1015]: 11:42:05 AptDaemon [INFO]: Quitting due to inactivity
+Jun 20 11:42:05 user org.debian.apt[1015]: 11:42:05 AptDaemon [INFO]: Quitting was requested
+Jun 20 11:42:05 user AptDaemon: INFO: Quitting was requested
+Jun 20 11:49:49 user /usr/lib/snapd/snapd[1049]: snapmgr.go:422: No snaps to auto-refresh found
+Jun 20 11:49:49 user snapd[1049]: 2017/06/20 11:49:49.004039 snapmgr.go:422: No snaps to auto-refresh found
+Jun 20 11:54:47 user /usr/lib/snapd/snapd[1049]: snapmgr.go:496: DEBUG: Next refresh scheduled for 2017-06-20 21:40:15.168873643 +0300 MSK.
+Jun 20 12:17:01 user CRON[16083]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 13:17:01 user CRON[20821]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 14:17:01 user CRON[24186]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 15:05:12 user NetworkManager[1043]: <info>  [1497960312.3533] manager: sleep requested (sleeping: no  enabled: yes)
+Jun 20 15:05:12 user NetworkManager[1043]: <info>  [1497960312.3533] manager: sleeping...
+Jun 20 15:05:12 user NetworkManager[1043]: <info>  [1497960312.3535] manager: NetworkManager state is now ASLEEP
+Jun 20 15:05:13 user systemd[1]: Reached target Sleep.
+Jun 20 15:05:13 user systemd[1]: Starting Suspend...
+Jun 20 15:05:13 user systemd-sleep[26995]: Failed to connect to non-global ctrl_ifname: (nil)  error: No such file or directory
+Jun 20 15:05:13 user systemd-sleep[26997]: /lib/systemd/system-sleep/wpasupplicant failed with error code 255.
+Jun 20 15:05:13 user systemd-sleep[26995]: Suspending system...
+Jun 20 18:54:27 user kernel: [214561.234218] PM: Syncing filesystems ... done.
+Jun 20 18:54:27 user kernel: [214561.320674] PM: Preparing system for sleep (mem)
+Jun 20 18:54:27 user kernel: [214561.320883] Freezing user space processes ... (elapsed 0.002 seconds) done.
+Jun 20 18:54:27 user kernel: [214561.323851] Freezing remaining freezable tasks ... (elapsed 0.001 seconds) done.
+Jun 20 18:54:27 user kernel: [214561.325320] PM: Suspending system (mem)
+Jun 20 18:54:27 user kernel: [214561.325338] Suspending console(s) (use no_console_suspend to debug)
+Jun 20 18:54:27 user kernel: [214561.325872] sd 2:0:0:0: [sdb] Synchronizing SCSI cache
+Jun 20 18:54:27 user kernel: [214561.325877] sd 0:0:0:0: [sda] Synchronizing SCSI cache
+Jun 20 18:54:27 user kernel: [214561.326031] sd 2:0:0:0: [sdb] Stopping disk
+Jun 20 18:54:27 user kernel: [214561.326547] serial 00:03: disabled
+Jun 20 18:54:27 user kernel: [214561.326553] serial 00:03: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.326870] parport_pc 00:02: disabled
+Jun 20 18:54:27 user kernel: [214561.328338] sd 0:0:0:0: [sda] Stopping disk
+Jun 20 18:54:27 user kernel: [214561.866326] PM: suspend of devices complete after 540.633 msecs
+Jun 20 18:54:27 user kernel: [214561.866918] PM: late suspend of devices complete after 0.590 msecs
+Jun 20 18:54:27 user kernel: [214561.867649] pcieport 0000:00:09.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867650] pcieport 0000:00:07.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867657] r8169 0000:04:00.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867763] ohci-pci 0000:00:14.5: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867902] ehci-pci 0000:00:13.2: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867931] ohci-pci 0000:00:13.1: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867949] ohci-pci 0000:00:13.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.867979] ehci-pci 0000:00:12.2: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.868009] ohci-pci 0000:00:12.1: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.868011] ohci-pci 0000:00:12.0: System wakeup enabled by ACPI
+Jun 20 18:54:27 user kernel: [214561.882251] PM: noirq suspend of devices complete after 15.330 msecs
+Jun 20 18:54:27 user kernel: [214561.882954] ACPI: Preparing to enter system sleep state S3
+Jun 20 18:54:27 user kernel: [214561.884200] PM: Saving platform NVS memory
+Jun 20 18:54:27 user kernel: [214561.884202] Disabling non-boot CPUs ...
+Jun 20 18:54:27 user kernel: [214561.884517] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.884558] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.886336] smpboot: CPU 1 is now offline
+Jun 20 18:54:27 user kernel: [214561.899002] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.899044] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.900067] smpboot: CPU 2 is now offline
+Jun 20 18:54:27 user kernel: [214561.914892] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.914895] Broke affinity for irq 18
+Jun 20 18:54:27 user kernel: [214561.914933] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.915952] smpboot: CPU 3 is now offline
+Jun 20 18:54:27 user kernel: [214561.931227] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.931232] Broke affinity for irq 18
+Jun 20 18:54:27 user kernel: [214561.931238] Broke affinity for irq 22
+Jun 20 18:54:27 user kernel: [214561.931285] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.932320] smpboot: CPU 4 is now offline
+Jun 20 18:54:27 user kernel: [214561.947041] Broke affinity for irq 1
+Jun 20 18:54:27 user kernel: [214561.947050] Broke affinity for irq 9
+Jun 20 18:54:27 user kernel: [214561.947053] Broke affinity for irq 12
+Jun 20 18:54:27 user kernel: [214561.947061] Broke affinity for irq 16
+Jun 20 18:54:27 user kernel: [214561.947064] Broke affinity for irq 17
+Jun 20 18:54:27 user kernel: [214561.947067] Broke affinity for irq 18
+Jun 20 18:54:27 user kernel: [214561.947069] Broke affinity for irq 19
+Jun 20 18:54:27 user kernel: [214561.947072] Broke affinity for irq 22
+Jun 20 18:54:27 user kernel: [214561.947114] Broke affinity for irq 41
+Jun 20 18:54:27 user kernel: [214561.948144] smpboot: CPU 5 is now offline
+Jun 20 18:54:27 user kernel: [214561.963992] ACPI: Low-level resume complete
+Jun 20 18:54:27 user kernel: [214561.964027] PM: Restoring platform NVS memory
+Jun 20 18:54:27 user kernel: [214561.964049] PCI-DMA: Resuming GART IOMMU
+Jun 20 18:54:27 user kernel: [214561.964049] PCI-DMA: Restoring GART aperture settings
+Jun 20 18:54:27 user kernel: [214561.964054] LVT offset 0 assigned for vector 0x400
+Jun 20 18:54:27 user kernel: [214561.964332] Enabling non-boot CPUs ...
+Jun 20 18:54:27 user kernel: [214561.980025] x86: Booting SMP configuration:
+Jun 20 18:54:27 user kernel: [214561.980026] smpboot: Booting Node 0 Processor 1 APIC 0x11
+Jun 20 18:54:27 user kernel: [214561.983062]  cache: parent cpu1 should not be sleeping
+Jun 20 18:54:27 user kernel: [214561.983216] CPU1 is up
+Jun 20 18:54:27 user kernel: [214562.004153] smpboot: Booting Node 0 Processor 2 APIC 0x12
+Jun 20 18:54:27 user kernel: [214562.007051]  cache: parent cpu2 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.007204] CPU2 is up
+Jun 20 18:54:27 user kernel: [214562.028172] smpboot: Booting Node 0 Processor 3 APIC 0x13
+Jun 20 18:54:27 user kernel: [214562.031163]  cache: parent cpu3 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.031318] CPU3 is up
+Jun 20 18:54:27 user kernel: [214562.052208] smpboot: Booting Node 0 Processor 4 APIC 0x14
+Jun 20 18:54:27 user kernel: [214562.055157]  cache: parent cpu4 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.055312] CPU4 is up
+Jun 20 18:54:27 user kernel: [214562.076245] smpboot: Booting Node 0 Processor 5 APIC 0x15
+Jun 20 18:54:27 user kernel: [214562.079300]  cache: parent cpu5 should not be sleeping
+Jun 20 18:54:27 user kernel: [214562.079457] CPU5 is up
+Jun 20 18:54:27 user kernel: [214562.087655] ACPI: Waking up from system sleep state S3
+Jun 20 18:54:27 user kernel: [214562.088940] ohci-pci 0000:00:12.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.088941] ohci-pci 0000:00:12.1: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.088979] ohci-pci 0000:00:13.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089035] ohci-pci 0000:00:13.1: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089139] ohci-pci 0000:00:14.5: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089342] pcieport 0000:00:07.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.089345] pcieport 0000:00:09.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104064] ehci-pci 0000:00:12.2: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104078] ehci-pci 0000:00:13.2: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104210] PM: noirq resume of devices complete after 15.550 msecs
+Jun 20 18:54:27 user kernel: [214562.104658] PM: early resume of devices complete after 0.418 msecs
+Jun 20 18:54:27 user kernel: [214562.104835] rtc_cmos 00:01: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104871] r8169 0000:04:00.0: System wakeup disabled by ACPI
+Jun 20 18:54:27 user kernel: [214562.104876] usb usb8: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.104879] usb usb9: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.104880] usb usb10: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.104881] usb usb11: root hub lost power or was reset
+Jun 20 18:54:27 user kernel: [214562.106290] parport_pc 00:02: activated
+Jun 20 18:54:27 user kernel: [214562.111554] serial 00:03: activated
+Jun 20 18:54:27 user kernel: [214562.117347] [drm] PCIE GART of 512M enabled (table at 0x00000000C0040000).
+Jun 20 18:54:27 user kernel: [214562.117419] radeon 0000:01:05.0: WB enabled
+Jun 20 18:54:27 user kernel: [214562.117421] radeon 0000:01:05.0: fence driver on ring 0 use gpu addr 0x00000000a0000c00 and cpu addr 0xffff8800ca33bc00
+Jun 20 18:54:27 user kernel: [214562.148525] sd 0:0:0:0: [sda] Starting disk
+Jun 20 18:54:27 user kernel: [214562.148556] sd 2:0:0:0: [sdb] Starting disk
+Jun 20 18:54:27 user kernel: [214562.150379] [drm] ring test on 0 succeeded in 0 usecs
+Jun 20 18:54:27 user kernel: [214562.150420] [drm] ib test on ring 0 succeeded in 0 usecs
+Jun 20 18:54:27 user kernel: [214562.167984] r8169 0000:04:00.0 enp4s0: link down
+Jun 20 18:54:28 user kernel: [214562.334462] PM: resume of devices complete after 229.794 msecs
+Jun 20 18:54:28 user kernel: [214562.334731] PM: Finishing wakeup.
+Jun 20 18:54:28 user kernel: [214562.334732] Restarting tasks ... done.
+Jun 20 18:54:28 user kernel: [214562.427929] ata6: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214562.431992] ata4: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214562.432034] ata5: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214562.439978] ata2: SATA link down (SStatus 0 SControl 300)
+Jun 20 18:54:28 user kernel: [214563.003954] ata1: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+Jun 20 18:54:28 user kernel: [214563.009283] ata1.00: configured for UDMA/133
+Jun 20 18:54:28 user systemd[1]: Time has been changed
+Jun 20 18:54:28 user systemd-sleep[26995]: Failed to connect to non-global ctrl_ifname: (nil)  error: No such file or directory
+Jun 20 18:54:28 user NetworkManager[1043]: <info>  [1497974067.3721] device (enp4s0): link disconnected (deferring action for 4 seconds)
+Jun 20 18:54:28 user systemd[1905]: Time has been changed
+Jun 20 18:54:28 user systemd-sleep[26995]: System resumed.
+Jun 20 18:54:28 user systemd[1]: snapd.refresh.timer: Adding 3h 10min 41.804387s random time.
+Jun 20 18:54:28 user systemd[1]: apt-daily.timer: Adding 9h 43min 31.247842s random time.
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2410] device (enp4s0): link connected
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2414] device (enp4s0): DHCPv4 lease renewal requested
+Jun 20 18:54:30 user kernel: [214565.204951] r8169 0000:04:00.0 enp4s0: link up
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2576] dhcp4 (enp4s0): canceled DHCP transaction, DHCP client pid 12108
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2576] dhcp4 (enp4s0): state changed bound -> done
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2586] dhcp4 (enp4s0): activation: beginning transaction (timeout in 45 seconds)
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.2616] dhcp4 (enp4s0): dhclient started with pid 27145
+Jun 20 18:54:30 user dhclient[27145]: DHCPREQUEST of 192.168.1.62 on enp4s0 to 255.255.255.255 port 67 (xid=0x21866a87)
+Jun 20 18:54:30 user dhclient[27145]: DHCPACK of 192.168.1.62 from 192.168.1.1
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4158]   address 192.168.1.62
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4158]   plen 24 (255.255.255.0)
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   gateway 192.168.1.1
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   server identifier 192.168.1.1
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   lease time 86400
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   hostname 'sis'
+Jun 20 18:54:30 user dbus[1015]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service'
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4159]   nameserver '192.168.1.1'
+Jun 20 18:54:30 user NetworkManager[1043]: <info>  [1497974070.4160] dhcp4 (enp4s0): state changed unknown -> bound
+Jun 20 18:54:30 user dhclient[27145]: bound to 192.168.1.62 -- renewal in 34180 seconds.
+Jun 20 18:54:30 user systemd[1]: Starting Network Manager Script Dispatcher Service...
+Jun 20 18:54:30 user dbus[1015]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
+Jun 20 18:54:30 user systemd[1]: Started Network Manager Script Dispatcher Service.
+Jun 20 18:54:30 user nm-dispatcher: req:1 'dhcp4-change' [enp4s0]: new request (1 scripts)
+Jun 20 18:54:30 user nm-dispatcher: req:1 'dhcp4-change' [enp4s0]: start running ordered scripts...
+Jun 20 18:54:32 user kernel: [214567.812078] ata3: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+Jun 20 18:54:32 user kernel: [214567.815051] ata3.00: configured for UDMA/133
+Jun 20 18:54:32 user systemd-sleep[27106]: /lib/systemd/system-sleep/wpasupplicant failed with error code 255.
+Jun 20 18:54:32 user systemd[1]: Started Suspend.
+Jun 20 18:54:32 user systemd[1]: sleep.target: Unit not needed anymore. Stopping.
+Jun 20 18:54:32 user systemd[1]: Stopped target Sleep.
+Jun 20 18:54:32 user systemd[1]: Reached target Suspend.
+Jun 20 18:54:32 user systemd[1]: suspend.target: Unit is bound to inactive unit systemd-suspend.service. Stopping, too.
+Jun 20 18:54:32 user systemd[1]: Stopped target Suspend.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9002] manager: wake requested (sleeping: yes  enabled: yes)
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9002] manager: waking up...
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9004] device (enp4s0): state change: activated -> unmanaged (reason 'sleeping') [100 10 37]
+Jun 20 18:54:32 user systemd[1]: Started Run anacron jobs at resume.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9327] dhcp4 (enp4s0): canceled DHCP transaction, DHCP client pid 27145
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9327] dhcp4 (enp4s0): state changed bound -> done
+Jun 20 18:54:32 user avahi-daemon[979]: Withdrawing address record for 192.168.1.62 on enp4s0.
+Jun 20 18:54:32 user avahi-daemon[979]: Leaving mDNS multicast group on interface enp4s0.IPv4 with address 192.168.1.62.
+Jun 20 18:54:32 user avahi-daemon[979]: Interface enp4s0.IPv4 no longer relevant for mDNS.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9342] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:32 user pptp[12194]: nm-pptp-service-12151 log[callmgr_main:pptp_callmgr.c:245]: Closing connection (unhandled)
+Jun 20 18:54:32 user pptp[12194]: nm-pptp-service-12151 log[ctrlp_rep:pptp_ctrl.c:259]: Sent control packet type is 12 'Call-Clear-Request'
+Jun 20 18:54:32 user pptp[12194]: nm-pptp-service-12151 log[call_callback:pptp_callmgr.c:84]: Closing connection (call state)
+Jun 20 18:54:32 user NetworkManager[1043]: Modem hangup
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 8 / phase 'network'
+Jun 20 18:54:32 user NetworkManager[1043]: Connect time 489.2 minutes.
+Jun 20 18:54:32 user NetworkManager[1043]: Sent 11798965 bytes, received 94930649 bytes.
+Jun 20 18:54:32 user avahi-daemon[979]: Withdrawing address record for fe80::be7f:db8e:b5f5:4910 on enp4s0.
+Jun 20 18:54:32 user avahi-daemon[979]: Leaving mDNS multicast group on interface enp4s0.IPv6 with address fe80::be7f:db8e:b5f5:4910.
+Jun 20 18:54:32 user avahi-daemon[979]: Interface enp4s0.IPv6 no longer relevant for mDNS.
+Jun 20 18:54:32 user systemd[1]: Started Run anacron jobs.
+Jun 20 18:54:32 user pppd[12159]: Modem hangup
+Jun 20 18:54:32 user pppd[12159]: Connect time 489.2 minutes.
+Jun 20 18:54:32 user pppd[12159]: Sent 11798965 bytes, received 94930649 bytes.
+Jun 20 18:54:32 user NetworkManager[1043]: MPPE disabled
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 10 / phase 'terminate'
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 5 / phase 'establish'
+Jun 20 18:54:32 user pppd[12159]: MPPE disabled
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 5 / phase 'establish'
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 11 / phase 'disconnect'
+Jun 20 18:54:32 user NetworkManager[1043]: Connection terminated.
+Jun 20 18:54:32 user pppd[12159]: Connection terminated.
+Jun 20 18:54:32 user anacron[27187]: Anacron 2.3 started on 2017-06-20
+Jun 20 18:54:32 user anacron[27187]: Normal exit (0 jobs run)
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: Terminated ppp daemon with PID 12159.
+Jun 20 18:54:32 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:32 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:32 user dnsmasq[1211]: using nameserver 8.8.4.4#53
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 1 / phase 'dead'
+Jun 20 18:54:32 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_exit_notify): cleaning up
+Jun 20 18:54:32 user pppd[12159]: Exit.
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9972] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9973] manager: NetworkManager state is now CONNECTED_SITE
+Jun 20 18:54:32 user NetworkManager[1043]: <info>  [1497974072.9974] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0145] manager: NetworkManager state is now DISCONNECTED
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0365] dns-mgr: Removing DNS information from /sbin/resolvconf
+Jun 20 18:54:33 user dnsmasq[1211]: no servers found in /var/run/dnsmasq/resolv.conf, will retry
+Jun 20 18:54:33 user NetworkManager[1043]: <error> [1497974073.0723] platform-linux: do-change-link[23]: failure changing link: failure 19 (No such device)
+Jun 20 18:54:33 user nm-dispatcher: req:2 'vpn-down' [ppp0]: new request (1 scripts)
+Jun 20 18:54:33 user nm-dispatcher: req:2 'vpn-down' [ppp0]: start running ordered scripts...
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0740] device (enp4s0): state change: unmanaged -> unavailable (reason 'managed') [10 20 2]
+Jun 20 18:54:33 user nm-dispatcher: req:3 'down' [enp4s0]: new request (1 scripts)
+Jun 20 18:54:33 user kernel: [214568.038774] IPv6: ADDRCONF(NETDEV_UP): enp4s0: link is not ready
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0908] device (enp4s0): link disconnected
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0914] devices removed (path: /sys/devices/virtual/net/ppp0, iface: ppp0)
+Jun 20 18:54:33 user kernel: [214568.054746] r8169 0000:04:00.0 enp4s0: link down
+Jun 20 18:54:33 user kernel: [214568.054762] r8169 0000:04:00.0 enp4s0: link down
+Jun 20 18:54:33 user kernel: [214568.054891] IPv6: ADDRCONF(NETDEV_UP): enp4s0: link is not ready
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0920] vpn-connection[0x2169230,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN plugin: state changed: stopping (5)
+Jun 20 18:54:33 user NetworkManager[1043]: <info>  [1497974073.0921] vpn-connection[0x2169230,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN service disappeared
+Jun 20 18:54:33 user NetworkManager[1043]: <error> [1497974073.0980] platform-linux: do-change-link[23]: failure changing link: failure 19 (No such device)
+Jun 20 18:54:33 user NetworkManager[1043]: <warn>  [1497974073.0980] device (ppp0): failed to disable userspace IPv6LL address handling
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:33 user nm-dispatcher: req:3 'down' [enp4s0]: start running ordered scripts...
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:33 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8952] device (enp4s0): link connected
+Jun 20 18:54:36 user kernel: [214571.859303] r8169 0000:04:00.0 enp4s0: link up
+Jun 20 18:54:36 user kernel: [214571.859322] IPv6: ADDRCONF(NETDEV_CHANGE): enp4s0: link becomes ready
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8957] device (enp4s0): state change: unavailable -> disconnected (reason 'carrier-changed') [20 30 40]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8963] policy: auto-activating connection 'Wired connection 1'
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8972] device (enp4s0): Activation: starting connection 'Wired connection 1' (e2cf5b07-8d15-3ead-a055-e331471f09d0)
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8973] device (enp4s0): state change: disconnected -> prepare (reason 'none') [30 40 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8974] manager: NetworkManager state is now CONNECTING
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8977] device (enp4s0): state change: prepare -> config (reason 'none') [40 50 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8980] device (enp4s0): state change: config -> ip-config (reason 'none') [50 70 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.8982] dhcp4 (enp4s0): activation: beginning transaction (timeout in 45 seconds)
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9015] dhcp4 (enp4s0): dhclient started with pid 27299
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user dhclient[27299]: DHCPREQUEST of 192.168.1.62 on enp4s0 to 255.255.255.255 port 67 (xid=0xd101a3f)
+Jun 20 18:54:36 user dhclient[27299]: DHCPACK of 192.168.1.62 from 192.168.1.1
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   address 192.168.1.62
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   plen 24 (255.255.255.0)
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   gateway 192.168.1.1
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   server identifier 192.168.1.1
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9374]   lease time 86400
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9375]   hostname 'sis'
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9375]   nameserver '192.168.1.1'
+Jun 20 18:54:36 user avahi-daemon[979]: Joining mDNS multicast group on interface enp4s0.IPv4 with address 192.168.1.62.
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9375] dhcp4 (enp4s0): state changed unknown -> bound
+Jun 20 18:54:36 user avahi-daemon[979]: New relevant interface enp4s0.IPv4 for mDNS.
+Jun 20 18:54:36 user avahi-daemon[979]: Registering new address record for 192.168.1.62 on enp4s0.IPv4.
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9405] device (enp4s0): state change: ip-config -> ip-check (reason 'none') [70 80 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9413] device (enp4s0): state change: ip-check -> secondaries (reason 'none') [80 90 0]
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9414] policy: set 'Wired connection 1' (enp4s0) as default for IPv4 routing and DNS
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9415] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:36 user dhclient[27299]: bound to 192.168.1.62 -- renewal in 33456 seconds.
+Jun 20 18:54:36 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:36 user dnsmasq[1211]: using nameserver 208.67.222.123#53
+Jun 20 18:54:36 user dnsmasq[1211]: using nameserver 208.67.220.123#53
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user NetworkManager[1043]: <info>  [1497974076.9949] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: Started the VPN service, PID 27341
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:36 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.0046] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: Saw the service appear; activating connection
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.0994] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN connection: (ConnectInteractive) reply received
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: pppd started with pid 27349
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1073] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN plugin: state changed: starting (3)
+Jun 20 18:54:37 user pppd[27349]: Plugin /usr/lib/pppd/2.4.7/nm-pptp-pppd-plugin.so loaded.
+Jun 20 18:54:37 user NetworkManager[1043]: Plugin /usr/lib/pppd/2.4.7/nm-pptp-pppd-plugin.so loaded.
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (plugin_init): initializing
+Jun 20 18:54:37 user pppd[27349]: pppd 2.4.7 started by root, uid 0
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 3 / phase 'serial connection'
+Jun 20 18:54:37 user pppd[27349]: Using interface ppp0
+Jun 20 18:54:37 user NetworkManager[1043]: nm_device_get_device_type: assertion 'NM_IS_DEVICE (self)' failed
+Jun 20 18:54:37 user NetworkManager[1043]: Using interface ppp0
+Jun 20 18:54:37 user NetworkManager[1043]: Connect: ppp0 <--> /dev/pts/18
+Jun 20 18:54:37 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 5 / phase 'establish'
+Jun 20 18:54:37 user pppd[27349]: Connect: ppp0 <--> /dev/pts/18
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1171] manager: (ppp0): new Generic device (/org/freedesktop/NetworkManager/Devices/23)
+Jun 20 18:54:37 user pptp[27355]: nm-pptp-service-27341 log[main:pptp.c:350]: The synchronous pptp option is NOT activated
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1252] dns-mgr: Removing DNS information from /sbin/resolvconf
+Jun 20 18:54:37 user dnsmasq[1211]: no servers found in /var/run/dnsmasq/resolv.conf, will retry
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1593] devices added (path: /sys/devices/virtual/net/ppp0, iface: ppp0)
+Jun 20 18:54:37 user NetworkManager[1043]: <info>  [1497974077.1593] device added (path: /sys/devices/virtual/net/ppp0, iface: ppp0): no ifupdown configuration found.
+Jun 20 18:54:37 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_rep:pptp_ctrl.c:259]: Sent control packet type is 1 'Start-Control-Connection-Request'
+Jun 20 18:54:37 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:781]: Received Start Control Connection Reply
+Jun 20 18:54:37 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:815]: Client connection established.
+Jun 20 18:54:38 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_rep:pptp_ctrl.c:259]: Sent control packet type is 7 'Outgoing-Call-Request'
+Jun 20 18:54:38 user avahi-daemon[979]: Joining mDNS multicast group on interface enp4s0.IPv6 with address fe80::be7f:db8e:b5f5:4910.
+Jun 20 18:54:38 user avahi-daemon[979]: New relevant interface enp4s0.IPv6 for mDNS.
+Jun 20 18:54:38 user avahi-daemon[979]: Registering new address record for fe80::be7f:db8e:b5f5:4910 on enp4s0.*.
+Jun 20 18:54:38 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:900]: Received Outgoing Call Reply.
+Jun 20 18:54:38 user pptp[27403]: nm-pptp-service-27341 log[ctrlp_disp:pptp_ctrl.c:939]: Outgoing call established (call ID 49030, peer's call ID 26496).
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 6 / phase 'authenticate'
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (get_credentials): passwd-hook, requesting credentials...
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (get_credentials): got credentials from NetworkManager-pptp
+Jun 20 18:54:38 user pppd[27349]: CHAP authentication succeeded
+Jun 20 18:54:38 user NetworkManager[1043]: CHAP authentication succeeded
+Jun 20 18:54:38 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 8 / phase 'network'
+Jun 20 18:54:38 user pppd[27349]: MPPE 128-bit stateless compression enabled
+Jun 20 18:54:38 user NetworkManager[1043]: MPPE 128-bit stateless compression enabled
+Jun 20 18:54:39 user pppd[27349]: local  IP address 10.0.0.100
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4112] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:39 user NetworkManager[1043]: local  IP address 10.0.0.100
+Jun 20 18:54:39 user NetworkManager[1043]: remote IP address 10.0.0.1
+Jun 20 18:54:39 user NetworkManager[1043]: primary   DNS address 8.8.8.8
+Jun 20 18:54:39 user NetworkManager[1043]: secondary DNS address 8.8.4.4
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_phasechange): status 9 / phase 'running'
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_ip_up): ip-up event
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: nm-pptp-ppp-plugin: (nm_ip_up): sending Ip4Config to NetworkManager-pptp...
+Jun 20 18:54:39 user pppd[27349]: remote IP address 10.0.0.1
+Jun 20 18:54:39 user NetworkManager[1043]: ** Message: PPTP service (IP Config Get) reply received.
+Jun 20 18:54:39 user pppd[27349]: primary   DNS address 8.8.8.8
+Jun 20 18:54:39 user pppd[27349]: secondary DNS address 8.8.4.4
+Jun 20 18:54:39 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:39 user dnsmasq[1211]: using nameserver 208.67.222.123#53
+Jun 20 18:54:39 user dnsmasq[1211]: using nameserver 208.67.220.123#53
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4539] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",0]: VPN connection: (IP4 Config Get) reply received from old-style plugin
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4548] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: VPN Gateway: 52.14.195.72
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: Tunnel Device: "ppp0"
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: IPv4 configuration:
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal Address: 10.0.0.100
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal Prefix: 32
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4549] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal Point-to-Point Address: 10.0.0.1
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Maximum Segment Size (MSS): 0
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Forbid Default Route: no
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal DNS: 8.8.8.8
+Jun 20 18:54:39 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4550] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   Internal DNS: 8.8.4.4
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4551] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data:   DNS Domain: '(none)'
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4551] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: Data: No IPv6 configuration
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4551] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: VPN plugin: state changed: started (4)
+Jun 20 18:54:39 user NetworkManager[1043]: <info>  [1497974079.4570] dns-mgr: Removing DNS information from /sbin/resolvconf
+Jun 20 18:54:39 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:39 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:40 user dnsmasq[1211]: no servers found in /var/run/dnsmasq/resolv.conf, will retry
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.4998] vpn-connection[0x2169410,9fd8cd2b-1b29-4d53-b04c-ca2408b23af4,"vpn",24:(ppp0)]: VPN connection: (IP Config Get) complete
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5009] device (enp4s0): state change: secondaries -> activated (reason 'none') [90 100 0]
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5011] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5013] manager: NetworkManager state is now CONNECTED_SITE
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5013] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:40 user NetworkManager[1043]: <info>  [1497974080.5105] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:41 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:41 user dnsmasq[1211]: using nameserver 208.67.222.123#53
+Jun 20 18:54:41 user dnsmasq[1211]: using nameserver 208.67.220.123#53
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5560] device (enp4s0): Activation: successful, device activated.
+Jun 20 18:54:41 user nm-dispatcher: req:4 'up' [enp4s0]: new request (1 scripts)
+Jun 20 18:54:41 user nm-dispatcher: req:4 'up' [enp4s0]: start running ordered scripts...
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5645] manager: NetworkManager state is now CONNECTED_LOCAL
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5646] manager: NetworkManager state is now CONNECTED_GLOBAL
+Jun 20 18:54:41 user NetworkManager[1043]: <info>  [1497974081.5647] dns-mgr: Writing DNS information to /sbin/resolvconf
+Jun 20 18:54:41 user gnome-session[2137]: (nm-applet:2307): Gtk-WARNING **: Can't set a parent on widget which has a parent
+Jun 20 18:54:41 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:41 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:42 user dnsmasq[1211]: reading /var/run/dnsmasq/resolv.conf
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 8.8.8.8#53
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 8.8.4.4#53
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 208.67.222.123#53
+Jun 20 18:54:42 user dnsmasq[1211]: using nameserver 208.67.220.123#53
+Jun 20 18:54:42 user nm-dispatcher: req:5 'vpn-up' [ppp0]: new request (1 scripts)
+Jun 20 18:54:42 user nm-dispatcher: req:5 'vpn-up' [ppp0]: start running ordered scripts...
+Jun 20 18:54:42 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:54:42 user gnome-session[2137]: (nm-applet:2307): Gtk-CRITICAL **: gtk_widget_destroy: assertion 'GTK_IS_WIDGET (widget)' failed
+Jun 20 18:55:00 user systemd[1905]: Time has been changed
+Jun 20 18:55:00 user systemd[1]: Time has been changed
+Jun 20 18:55:00 user systemd[1]: snapd.refresh.timer: Adding 1h 53min 16.668924s random time.
+Jun 20 18:55:00 user systemd[1]: apt-daily.timer: Adding 11h 43min 43.690300s random time.
+Jun 20 18:55:39 user pptp[27403]: nm-pptp-service-27341 log[logecho:pptp_ctrl.c:719]: Echo Reply received.
+Jun 20 19:04:41 user pptp[27403]: message repeated 9 times: [ nm-pptp-service-27341 log[logecho:pptp_ctrl.c:719]: Echo Reply received.]
+Jun 20 19:04:41 user pptp[27403]: nm-pptp-service-27341 log[logecho:pptp_ctrl.c:721]: no more Echo Reply/Request packets will be reported.
+Jun 20 19:17:01 user CRON[28415]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 20:10:13 user gnome-session[2137]: Nautilus-Share-Message: Called "net usershare info" but it failed: Failed to execute child process "net" (No such file or directory)
+Jun 20 20:10:27 user org.gnome.zeitgeist.SimpleIndexer[1994]: ** (zeitgeist-fts:2771): WARNING **: Unable to get info on application://nautilus-autostart.desktop
+Jun 20 20:11:01 user org.gnome.zeitgeist.SimpleIndexer[1994]: ** (zeitgeist-fts:2771): WARNING **: Unable to get info on application://nautilus-autostart.desktop
+Jun 20 20:17:01 user CRON[29895]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 21:17:01 user CRON[868]: (root) CMD (   cd / && run-parts --report /etc/cron.hourly)
+Jun 20 21:42:22 user kernel: [224636.777936] usb 1-1: USB disconnect, device number 4
+Jun 20 21:42:22 user udisksd[2339]: Cleaning up mount point /media/sis/data (device 8:36 no longer exist)
+Jun 20 21:42:27 user colord-sane: io/hpmud/pp.c 627: unable to read device-id ret=-1
+Jun 20 21:42:48 user kernel: [224662.698350] usb 1-1: new high-speed USB device number 5 using ehci-pci
+Jun 20 21:42:48 user kernel: [224662.830955] usb 1-1: New USB device found, idVendor=1a40, idProduct=0101
+Jun 20 21:42:48 user kernel: [224662.830962] usb 1-1: New USB device strings: Mfr=0, Product=1, SerialNumber=0
+Jun 20 21:42:48 user kernel: [224662.830967] usb 1-1: Product: USB 2.0 Hub
+Jun 20 21:42:48 user kernel: [224662.831421] hub 1-1:1.0: USB hub found
+Jun 20 21:42:48 user kernel: [224662.831579] hub 1-1:1.0: 4 ports detected
+Jun 20 21:42:49 user kernel: [224663.102386] usb 1-1.1: new high-speed USB device number 6 using ehci-pci
+Jun 20 21:42:49 user kernel: [224663.195160] usb 1-1.1: New USB device found, idVendor=0bda, idProduct=8179
+Jun 20 21:42:49 user kernel: [224663.195167] usb 1-1.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Jun 20 21:42:49 user kernel: [224663.195172] usb 1-1.1: Product: 802.11n NIC
+Jun 20 21:42:49 user kernel: [224663.195175] usb 1-1.1: Manufacturer: Realtek
+Jun 20 21:42:49 user kernel: [224663.195179] usb 1-1.1: SerialNumber: 00E04C0001
+Jun 20 21:42:49 user kernel: [224663.266308] usb 1-1.3: new high-speed USB device number 7 using ehci-pci
+Jun 20 21:42:49 user kernel: [224663.371569] usb 1-1.3: New USB device found, idVendor=05e3, idProduct=0723
+Jun 20 21:42:49 user kernel: [224663.371577] usb 1-1.3: New USB device strings: Mfr=3, Product=4, SerialNumber=2
+Jun 20 21:42:49 user kernel: [224663.371581] usb 1-1.3: Product: USB Storage
+Jun 20 21:42:49 user kernel: [224663.371585] usb 1-1.3: Manufacturer: Generic 
+Jun 20 21:42:49 user kernel: [224663.371588] usb 1-1.3: SerialNumber: 000000009451
+Jun 20 21:42:49 user kernel: [224663.372468] usb-storage 1-1.3:1.0: USB Mass Storage device detected
+Jun 20 21:42:49 user kernel: [224663.372616] usb-storage 1-1.3:1.0: Quirks match for vid 05e3 pid 0723: 8000
+Jun 20 21:42:49 user kernel: [224663.372665] scsi host10: usb-storage 1-1.3:1.0
+Jun 20 21:42:49 user mtp-probe: checking bus 1, device 7: "/sys/devices/pci0000:00/0000:00:12.2/usb1/1-1/1-1.3"
+Jun 20 21:42:49 user mtp-probe: checking bus 1, device 6: "/sys/devices/pci0000:00/0000:00:12.2/usb1/1-1/1-1.1"
+Jun 20 21:42:49 user mtp-probe: bus: 1, device: 7 was not an MTP device
+Jun 20 21:42:49 user mtp-probe: bus: 1, device: 6 was not an MTP device
+Jun 20 21:42:50 user kernel: [224664.371964] scsi 10:0:0:0: Direct-Access     Generic  STORAGE DEVICE   9451 PQ: 0 ANSI: 0
+Jun 20 21:42:50 user kernel: [224664.372647] sd 10:0:0:0: Attached scsi generic sg2 type 0
+Jun 20 21:42:50 user kernel: [224664.377138] sd 10:0:0:0: [sdc] Attached SCSI removable disk
+Jun 20 21:42:50 user kernel: [224664.433004] r8188eu: module is from the staging directory, the quality is unknown, you have been warned.
+Jun 20 21:42:50 user kernel: [224664.433277] r8188eu: module verification failed: signature and/or required key missing - tainting kernel
+Jun 20 21:42:50 user kernel: [224664.434989] Chip Version Info: CHIP_8188E_Normal_Chip_TSMC_D_CUT_1T1R_RomVer(0)
+Jun 20 21:42:50 user kernel: [224664.441352] cfg80211: World regulatory domain updated:
+Jun 20 21:42:50 user kernel: [224664.441356] cfg80211:  DFS Master region: unset
+Jun 20 21:42:50 user kernel: [224664.441358] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp), (dfs_cac_time)
+Jun 20 21:42:50 user kernel: [224664.441361] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+Jun 20 21:42:50 user kernel: [224664.441363] cfg80211:   (2457000 KHz - 2482000 KHz @ 40000 KHz), (N/A, 2000 mBm), (N/A)
+Jun 20 21:42:50 user kernel: [224664.441365] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (N/A, 2000 mBm), (N/A)
+Jun 20 21:42:50 user kernel: [224664.441367] cfg80211:   (5170000 KHz - 5250000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (N/A)
+Jun 20 21:42:50 user kernel: [224664.441370] cfg80211:   (5250000 KHz - 5330000 KHz @ 80000 KHz, 160000 KHz AUTO), (N/A, 2000 mBm), (0 s)
+Jun 20 21:42:50 user kernel: [224664.441372] cfg80211:   (5490000 KHz - 5730000 KHz @ 160000 KHz), (N/A, 2000 mBm), (0 s)
+Jun 20 21:42:50 user kernel: [224664.441374] cfg80211:   (5735000 KHz - 5835000 KHz @ 80000 KHz), (N/A, 2000 mBm), (N/A)
+Jun 20 21:42:50 user kernel: [224664.441376] cfg80211:   (57240000 KHz - 63720000 KHz @ 2160000 KHz), (N/A, 0 mBm), (N/A)
+Jun 20 21:42:50 user kernel: [224664.467307] usbcore: registered new interface driver r8188eu
+Jun 20 21:42:50 user NetworkManager[1043]: <info>  [1497984170.5777] (wlan0): driver supports SSID scans (scan_capa 0x3F).
+Jun 20 21:42:50 user NetworkManager[1043]: <info>  [1497984170.5777] (wlan0): using WEXT for WiFi device control
+Jun 20 21:42:50 user kernel: [224664.475928] r8188eu 1-1.1:1.0 wlxc4e984d96a51: renamed from wlan0
+Jun 20 21:42:50 user NetworkManager[1043]: <info>  [1497984170.5861] manager: (wlan0): new 802.11 WiFi device (/org/freedesktop/NetworkManager/Devices/24)
+Jun 20 21:42:50 user dbus[1015]: [system] Activating via systemd: service name='fi.w1.wpa_supplicant1' unit='wpa_supplicant.service'
+Jun 20 21:42:50 user NetworkManager[1043]: <info>  [1497984170.6085] device (wlan0): interface index 25 renamed iface from 'wlan0' to 'wlxc4e984d96a51'
+Jun 20 21:42:50 user systemd[1]: Starting WPA supplicant...
+Jun 20 21:42:50 user NetworkManager[1043]: <info>  [1497984170.6205] devices added (path: /sys/devices/pci0000:00/0000:00:12.2/usb1/1-1/1-1.1/1-1.1:1.0/net/wlxc4e984d96a51, iface: wlxc4e984d96a51)
+Jun 20 21:42:50 user NetworkManager[1043]: <info>  [1497984170.6205] device added (path: /sys/devices/pci0000:00/0000:00:12.2/usb1/1-1/1-1.1/1-1.1:1.0/net/wlxc4e984d96a51, iface: wlxc4e984d96a51): no ifupdown configuration found.
+Jun 20 21:42:50 user NetworkManager[1043]: <info>  [1497984170.6217] device (wlxc4e984d96a51): state change: unmanaged -> unavailable (reason 'managed') [10 20 2]
+Jun 20 21:42:50 user kernel: [224664.516299] IPv6: ADDRCONF(NETDEV_UP): wlxc4e984d96a51: link is not ready
+Jun 20 21:42:50 user dbus[1015]: [system] Successfully activated service 'fi.w1.wpa_supplicant1'
+Jun 20 21:42:50 user systemd[1]: Started WPA supplicant.
+Jun 20 21:42:50 user wpa_supplicant[4288]: Successfully initialized wpa_supplicant
+Jun 20 21:42:51 user kernel: [224665.266872] MAC Address = c4:e9:84:d9:6a:51
+Jun 20 21:42:51 user NetworkManager[1043]: <info>  [1497984171.3768] (wlxc4e984d96a51): driver supports SSID scans (scan_capa 0x3F).
+Jun 20 21:42:51 user NetworkManager[1043]: <info>  [1497984171.3769] (wlxc4e984d96a51): using WEXT for WiFi device control
+Jun 20 21:42:51 user kernel: [224665.270693] IPv6: ADDRCONF(NETDEV_UP): wlxc4e984d96a51: link is not ready
+Jun 20 21:42:51 user NetworkManager[1043]: <info>  [1497984171.3837] supplicant: wpa_supplicant running
+Jun 20 21:42:51 user NetworkManager[1043]: <info>  [1497984171.3841] device (wlxc4e984d96a51): supplicant interface state: init -> starting
+Jun 20 21:42:51 user wpa_supplicant[4288]: nl80211: Driver does not support authentication/association or connect commands
+Jun 20 21:42:51 user wpa_supplicant[4288]: nl80211: deinit ifname=wlxc4e984d96a51 disabled_11b_rates=0
+Jun 20 21:42:51 user wpa_supplicant[4288]: ioctl[SIOCSIWAP]: Operation not permitted
+Jun 20 21:42:51 user wpa_supplicant[4288]: ioctl[SIOCSIWENCODEEXT]: Invalid argument
+Jun 20 21:42:51 user wpa_supplicant[4288]: ioctl[SIOCSIWENCODEEXT]: Invalid argument
+Jun 20 21:42:51 user wpa_supplicant[4288]: dbus: wpa_dbus_get_object_properties: failed to get object properties: (none) none
+Jun 20 21:42:51 user wpa_supplicant[4288]: dbus: Failed to construct signal
+Jun 20 21:42:51 user NetworkManager[1043]: <info>  [1497984171.4192] device (wlxc4e984d96a51): supplicant interface state: starting -> ready
+Jun 20 21:42:51 user kernel: [224665.313838] IPv6: ADDRCONF(NETDEV_UP): wlxc4e984d96a51: link is not ready
+Jun 20 21:42:51 user NetworkManager[1043]: <info>  [1497984171.4193] device (wlxc4e984d96a51): state change: unavailable -> disconnected (reason 'supplicant-available') [20 30 42]
+Jun 20 21:42:52 user ModemManager[1047]: <info>  Couldn't find support for device at '/sys/devices/pci0000:00/0000:00:12.2/usb1/1-1/1-1.1': not supported by any plugin
+Jun 20 21:42:52 user NetworkManager[1043]: <info>  [1497984172.7202] device (wlxc4e984d96a51): supplicant interface state: ready -> inactive
+Jun 20 21:42:52 user colord-sane: io/hpmud/pp.c 627: unable to read device-id ret=-1
+Jun 20 21:42:54 user kernel: [224668.866407] usb 1-1.4: new high-speed USB device number 8 using ehci-pci
+Jun 20 21:42:55 user kernel: [224668.985816] usb 1-1.4: New USB device found, idVendor=8564, idProduct=1000
+Jun 20 21:42:55 user kernel: [224668.985824] usb 1-1.4: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+Jun 20 21:42:55 user kernel: [224668.985829] usb 1-1.4: Product: Mass Storage Device
+Jun 20 21:42:55 user kernel: [224668.985833] usb 1-1.4: Manufacturer: JetFlash
+Jun 20 21:42:55 user kernel: [224668.985836] usb 1-1.4: SerialNumber: 3WNUMD45
+Jun 20 21:42:55 user kernel: [224668.986338] usb-storage 1-1.4:1.0: USB Mass Storage device detected
+Jun 20 21:42:55 user kernel: [224668.986811] scsi host11: usb-storage 1-1.4:1.0
+Jun 20 21:42:55 user mtp-probe: checking bus 1, device 8: "/sys/devices/pci0000:00/0000:00:12.2/usb1/1-1/1-1.4"
+Jun 20 21:42:55 user mtp-probe: bus: 1, device: 8 was not an MTP device
+Jun 20 21:42:56 user kernel: [224669.988531] scsi 11:0:0:0: Direct-Access     JetFlash Transcend 32GB   8.07 PQ: 0 ANSI: 4
+Jun 20 21:42:56 user kernel: [224669.989031] sd 11:0:0:0: Attached scsi generic sg3 type 0
+Jun 20 21:42:56 user kernel: [224669.990888] sd 11:0:0:0: [sdd] 62939136 512-byte logical blocks: (32.2 GB/30.0 GiB)
+Jun 20 21:42:56 user kernel: [224669.992005] sd 11:0:0:0: [sdd] Write Protect is off
+Jun 20 21:42:56 user kernel: [224669.992011] sd 11:0:0:0: [sdd] Mode Sense: 23 00 00 00
+Jun 20 21:42:56 user kernel: [224669.993127] sd 11:0:0:0: [sdd] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
+Jun 20 21:42:56 user kernel: [224670.001492]  sdd: sdd4
+Jun 20 21:42:56 user kernel: [224670.005127] sd 11:0:0:0: [sdd] Attached SCSI removable disk
+Jun 20 21:42:56 user kernel: [224670.372652] FAT-fs (sdd4): Volume was not properly unmounted. Some data may be corrupt. Please run fsck.
+Jun 20 21:42:56 user udisksd[2339]: Mounted /dev/sdd4 at /media/sis/data on behalf of uid 1000
+Jun 20 21:42:56 user gnome-session[2137]: (nautilus:4361): GLib-GIO-CRITICAL **: g_dbus_interface_skeleton_unexport: assertion 'interface_->priv->connections != NULL' failed
+Jun 20 21:42:56 user gnome-session[2137]: (nautilus:4361): GLib-GIO-CRITICAL **: g_dbus_interface_skeleton_unexport: assertion 'interface_->priv->connections != NULL' failed
+Jun 20 21:42:56 user gnome-session[2137]: (nautilus:4361): Gtk-CRITICAL **: gtk_icon_theme_get_for_screen: assertion 'GDK_IS_SCREEN (screen)' failed
+Jun 20 21:42:56 user gnome-session[2137]: (nautilus:4361): GLib-GObject-WARNING **: invalid (NULL) pointer instance
+Jun 20 21:42:56 user gnome-session[2137]: (nautilus:4361): GLib-GObject-CRITICAL **: g_signal_connect_object: assertion 'G_TYPE_CHECK_INSTANCE (instance)' failed
+Jun 20 21:42:56 user dbus[1015]: [system] Activating via systemd: service name='org.freedesktop.hostname1' unit='dbus-org.freedesktop.hostname1.service'
+Jun 20 21:42:56 user systemd[1]: Starting Hostname Service...
+Jun 20 21:42:56 user dbus[1015]: [system] Successfully activated service 'org.freedesktop.hostname1'
+Jun 20 21:42:56 user systemd[1]: Started Hostname Service.
+Jun 20 21:42:59 user colord-sane: io/hpmud/pp.c 627: unable to read device-id ret=-1

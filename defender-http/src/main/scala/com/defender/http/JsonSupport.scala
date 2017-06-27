@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import com.defender.LogRecord
+import com.defender.logging.LogEvent
 import spray.json._
 
 trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
@@ -17,6 +17,6 @@ trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
     }
   }
 
-  implicit val logEventFormat: RootJsonFormat[LogRecord] = jsonFormat4(LogRecord)
-
+  implicit val logEventFormat: RootJsonFormat[LogEvent] = jsonFormat4(LogEvent)
 }
+
