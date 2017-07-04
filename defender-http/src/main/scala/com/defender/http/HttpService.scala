@@ -15,7 +15,7 @@ import com.defender.services.LoggingService
 import com.typesafe.config.{ Config, ConfigFactory }
 
 import scala.concurrent.duration._
-import scala.io.StdIn
+import scala.util.{ Failure, Success }
 
 object HttpService extends SLF4JLogging {
   lazy val envConfig: Config = {
@@ -50,10 +50,13 @@ object HttpService extends SLF4JLogging {
     val loggingServiceRoute = new LoggingServiceRoute(loggingService)
     val port = config.getInt("defender.http.port")
     val routes = loggingServiceRoute.route
-    val bindingFuture = Http().bindAndHandle(routes, "localhost", port)
+    val bindingFuture = Http().bindAndHandle(routes, "0.0.0.0", port)
     val messageMonitor = MessageMonitorActor()
 
-    log.info(s"Http service is up http://localhost:$port")
+    bindingFuture.onComplete({
+      case Success(_) => log.info(s"Http service is up http://localhost:$port")
+      case Failure(e) => log.error(s"Http service failed to bind http://localhost:$port", e)
+    })
 
     //    StdIn.readLine()
     //    bindingFuture

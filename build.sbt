@@ -1,41 +1,17 @@
 import Dependencies._
-import com.typesafe.config._
-
-lazy val confDir: SettingKey[File] = settingKey[File]("Configuration directory")
-lazy val appBaseConfDir: SettingKey[File] = settingKey[File]("Application base configuration directory")
-lazy val appEnvConfDir: SettingKey[File] = settingKey[File]("Application environment configuration directory")
-lazy val appConf: SettingKey[Config] = settingKey[Config]("Application configuration")
-lazy val prepareBuild: TaskKey[Unit] = TaskKey[Unit]("prepareBuild", "Prepare build project")
-lazy val build: TaskKey[File] = TaskKey[File]("build", "Build project")
-lazy val compileScalastyle: TaskKey[Unit] = taskKey[Unit]("compileScalastyle")
-
-lazy val Development: Configuration = config("development") extend Universal describedAs "scope to build production packages"
-lazy val Production: Configuration = config("production") extend Debian describedAs "scope to build development packages"
-
-lazy val developmentSettings = Seq(
-  appEnvConfDir := confDir.value / "local",
-  build := {
-    prepareBuild.value
-    packageBin.value
-  }
-)
-
-lazy val productionSettings = Seq(
-  appEnvConfDir := confDir.value / "prod",
-  build := {
-    prepareBuild.value
-    packageBin.value
-  }
-)
+import com.typesafe.sbt.packager.docker._
 
 lazy val commonSettings: Seq[Def.Setting[_]] = {
-  inConfig(Development)(developmentSettings) ++
-    inConfig(Production)(productionSettings) ++
     Seq(
       organization := "com.defender",
-      version := "0.2.0-SNAPSHOT",
+      version := {
+        buildEnv.value match {
+          case BuildEnv.Production => currentVersion
+          case env => s"$currentVersion-${env.toString.toUpperCase}"
+        }
+      },
       scalaVersion := "2.12.2",
-      logLevel := Level.Warn,
+      logLevel := Level.Info,
       resolvers ++= Seq(
         Resolver.typesafeRepo("releases"),
         Resolver.sonatypeRepo("releases")
@@ -51,69 +27,125 @@ lazy val commonSettings: Seq[Def.Setting[_]] = {
       javaOptions += "-Xmx4G",
       parallelExecution in Test := true,
       testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-W", "10", "5"),
-      fork := true,
-      maintainer := "Mark Duberg <scala@dr.com>",
-      packageSummary := "Intrusion Detection System",
-      packageDescription := "Intrusion Detection System for Ubuntu",
-      mainClass in Compile := Some("com.defender.http.HttpService"),
-      confDir := baseDirectory.value / "conf",
-      prepareBuild := {
-        taskKeyAll(test in Test).all(allProjectsFilter).value
-        taskKeyAll(compileScalastyle).all(allProjectsFilter).value
-      }
+      fork := true
     )
 }
 
-lazy val rootSettings: Seq[Def.Setting[_]] = {
-  commonSettings ++
+lazy val dockerSettings: Seq[Def.Setting[_]] = {
+  Seq(
+    //dockerBaseImage := "ubuntu"
+  ) ++ inConfig(Docker)(Seq(
+    dockerDebPath := {
+      val f = defaultLinuxInstallLocation.value
+      val n = (name in root).value
+      val v = (version in root).value
+      s"$f/lib/$n-$v.deb"
+    },
+    mainClass in Compile := Some("com.defender.integration.Main"),
+    dockerPackageMappings ++= {
+      val log = streams.value.log
+      val f = (packageBin in (root, Debian)).value
+      log.success("Build .deb success")
+      Seq(f -> dockerDebPath.value)
+    },
+    daemonUser := "root",
+    dockerCommands ++= Seq(
+      //Cmd("EXPOSE", conf.value.getString("defender.http.port")),
+      //ExecCmd("RUN", "apt-get", "update"),
+      ExecCmd("RUN", "dpkg", "-i", dockerDebPath.value))
+  ))
+}
+
+lazy val debianSettings: Seq[Def.Setting[_]] = inConfig(Debian)(Seq(
+  debianPackageDependencies in Debian ++= Seq("java2-runtime", "bash (>= 2.05a-11)"),
+  linuxPackageMappings ++= Seq(
+    packageTemplateMapping(conf.value.getString("akka.persistence.journal.leveldb.dir"))()
+      .withUser(name.value)
+      .withGroup("adm"),
+    packageTemplateMapping(conf.value.getString("akka.persistence.snapshot-store.local.dir"))()
+      .withUser(name.value)
+      .withGroup("adm")
+  )
+))
+
+lazy val universalSettings: Seq[Def.Setting[_]] = inConfig(Universal)(Seq(
+  javaOptions := {
+    val d = s"${defaultLinuxInstallLocation.value}/${name.value}/conf"
     Seq(
-      name := "defender",
-      daemonUser in Linux := name.value,
-      daemonGroup in Linux := "adm", // group with read rights /var/log/auth.log
-      defaultLinuxConfigLocation in Production := "/usr/share/defender/etc",
-      mappings in Universal ++= {
-        Seq(
-          (appBaseConfDir.value / "base.conf") -> s"${defaultLinuxConfigLocation.value}/base.conf",
-          ((appEnvConfDir in Production).value / "production.conf") -> s"${defaultLinuxConfigLocation.value}/production.conf",
-          ((appEnvConfDir in Production).value / "logback.xml") -> s"${defaultLinuxConfigLocation.value}/logback.xml"
-        )
-      },
-      // Add an empty folder to mappings
-      linuxPackageMappings ++= {
-        Seq(
-          packageTemplateMapping(appConf.value.getString("akka.persistence.journal.leveldb.dir"))()
-            .withUser(name.value)
-            .withGroup("adm"),
-          packageTemplateMapping(appConf.value.getString("akka.persistence.snapshot-store.local.dir"))()
-            .withUser(name.value)
-            .withGroup("adm")
-        )
-      },
-      appBaseConfDir := confDir.value / "base",
-      appConf := {
-        def configuration: Config = {
-          val envConf: Config = {
-            val f = (appEnvConfDir in Production).value / "production.conf"
-            println(s"Environment configuration file: $f")
-            ConfigFactory.parseFile(f)
-          }
-          val conf: Config = {
-            val f = appBaseConfDir.value / "base.conf"
-            val c = ConfigFactory.parseFile(f)
-            println(s"Base configuration file: $f")
-            envConf.withFallback(c).resolve()
-          }
-          conf
-        }
-        configuration
-      },
-      javaOptions in Universal ++= Seq(
-        // -J params will be added as jvm parameters
-        s"-Dconfig.base.file=${defaultLinuxInstallLocation.value}/${name.value}/etc/base.conf",
-        s"-Dconfig.env.file=${defaultLinuxInstallLocation.value}/${name.value}/etc/production.conf",
-        s"-Dlogback.configurationFile=${defaultLinuxInstallLocation.value}/${name.value}/etc/logback.xml"
-      )
+      s"-Dconfig.base.file=$d/base.conf",
+      s"-Dconfig.env.file=$d/env.conf",
+      s"-Dlogback.configurationFile=$d/logback.xml"
     )
+  },
+  mappings ++= {
+    val to = "conf"
+    def envMappings: Seq[(File, String)] = {
+      val from = envConfDir.value
+      buildEnv.value match {
+        case BuildEnv.Production => Seq(
+          (from / "production.conf") -> s"$to/env.conf",
+          (from / "logback.xml") -> s"$to/logback.xml"
+        )
+        case BuildEnv.Development => Seq(
+          (from / "development.conf") -> s"$to/env.conf",
+          (from / "logback-test.xml") -> s"$to/logback.xml"
+        )
+        case BuildEnv.Docker => Seq(
+          (from / "docker.conf") -> s"$to/env.conf",
+          (from / "logback-test.xml") -> s"$to/logback.xml"
+        )
+      }
+    }
+    ((baseConfDir.value / "base.conf") -> s"$to/base.conf") +: Seq(envMappings: _*)
+  }
+))
+
+lazy val rootSettings: Seq[Def.Setting[_]] = {
+  val settings = Seq(
+    name := "defender",
+    daemonUser in Linux := name.value,
+    daemonGroup in Linux := "adm", // group with read rights /var/log/auth.log
+    maintainer := "Mark Duberg <mduberg@yahoo.com>",
+    packageSummary := "Intrusion Detection System",
+    packageDescription := "Intrusion Detection System for Ubuntu",
+    mainClass in Compile := Some("com.defender.http.HttpService"),
+    build := Def.sequential(
+      taskKeyAll(compileScalastyle).all(allProjectsFilter),
+      compileScalastyle in defenderIntegration,
+      taskKeyAll(packageBin in Compile).all(allProjectsFilter),
+      scalariformFormat in (defenderIntegration, Compile),
+      packageBin in Debian,
+      genInstallScript
+    ).value,
+    aggregate in build := false,
+    testAll := Def.sequential(
+      dockerPublishLocalScript in defenderIntegration,
+      taskKeyAll(test in Test).all(allProjectsFilter),
+      test in (defenderIntegration, IntegrationTest)
+    ).value,
+    aggregate in testAll := false,
+    genInstallScript := {
+      val env = buildEnv.value match {
+        case BuildEnv.Production => "prod"
+        case BuildEnv.Development => "dev"
+        case BuildEnv.Docker => "docker"
+      }
+      val f = scriptDir.value / s"install-$env"
+      val n = s"${name.value}_${version.value}_all.deb"
+      val c =
+        s"""#!/usr/bin/env bash
+          |cd "$$(dirname "$$0")"/..
+          |sudo dpkg -i target/$n
+        """.stripMargin
+      IO.write(f, c)
+      f
+    }
+  )
+  commonSettings ++
+    universalSettings ++
+    debianSettings ++
+    settings ++
+    itSettings
 }
 
 lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
@@ -121,51 +153,42 @@ lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   defenderNotification,
   defenderLogging,
   defenderServices,
-  defenderHttp,
-  defenderTest
+  defenderHttp
 )
 
 lazy val allProjectsFilter = ScopeFilter(
-  inProjects(aggregatedProjects: _*),
-  inConfigurations(Compile)
+  inProjects(aggregatedProjects: _*)
+  //inConfigurations(Compile)
 )
 
-def defenderModule(name: String): Project = Project(
-    id = name,
-    base = file(name),
-    settings = commonSettings,
-    configurations = Seq(Development, Production)
-  ).enablePlugins(
-  JavaServerAppPackaging,
-  LinuxPlugin,
-  UniversalPlugin,
-  DebianPlugin,
-  SystemdPlugin
+def projectModule(name: String): Project = Project(
+  id = name,
+  base = file(name),
+  settings = commonSettings ++ itSettings
 )
 
 lazy val root = Project(
   id = "defender",
   base = file("."),
   settings = rootSettings,
-  configurations = Seq(Development, Production),
   dependencies = Seq(
     defenderApi,
     defenderNotification,
     defenderLogging,
     defenderServices,
-    defenderHttp,
-    defenderTest
+    defenderHttp
   ),
   aggregate = aggregatedProjects
 ).enablePlugins(
+  BuildPlugin,
   JavaServerAppPackaging,
-  LinuxPlugin,
   UniversalPlugin,
+  LinuxPlugin,
   DebianPlugin,
   SystemdPlugin
 )
 
-lazy val defenderApi = defenderModule("defender-api")
+lazy val defenderApi = projectModule("defender-api")
   .settings(libraryDependencies ++= Seq(
     akkaActor,
     akkaStream,
@@ -188,28 +211,56 @@ lazy val defenderApi = defenderModule("defender-api")
     scalamock
   ))
 
-lazy val defenderLogging = defenderModule("defender-logging")
+lazy val defenderLogging = projectModule("defender-logging")
   .dependsOn(defenderNotification % "test->test;compile->compile")
   .settings(libraryDependencies ++= Seq(
     scalaArm
   ))
 
-lazy val defenderNotification = defenderModule("defender-notification")
+lazy val defenderNotification = projectModule("defender-notification")
   .dependsOn(defenderApi % "test->test;compile->compile")
   .settings(libraryDependencies ++= Seq(
-    javaxmail,
-    akkaTestKit
+    javaxmail
   ))
 
-lazy val defenderServices = defenderModule("defender-services")
+lazy val defenderServices = projectModule("defender-services")
   .dependsOn(defenderLogging)
 
-lazy val defenderHttp = defenderModule("defender-http")
+lazy val defenderHttp = projectModule("defender-http")
   .dependsOn(defenderServices)
   .settings(libraryDependencies ++= Seq(
     akkaHttp,
     akkaHttpSprayJson
   ))
 
-lazy val defenderTest = defenderModule("defender-test")
-  .dependsOn(defenderHttp)
+lazy val integrationSettings: Seq[Def.Setting[_]]  = {
+  val settings = Seq(
+    dockerPublishLocalScript := {
+      val log = streams.value.log
+      val p = ((baseDirectory in root).value / "scripts/docker-publish-local.sh").getPath
+      log.info(s"Run $p")
+      if (p ! log == 0) log.success("Publishing custom docker image success")
+      else throw new RuntimeException("Publishing custom docker image failed")
+    },
+    dockerExecName := (name in root).value,
+    dockerPort := (conf in root).value.getInt("defender.http.port"),
+    buildInfoKeys := Seq[BuildInfoKey](name, version, dockerExecName, dockerPort),
+    buildInfoPackage := "com.defender.integration",
+    libraryDependencies ++= Seq(
+      scalaLogging,
+      akkaHttp,
+      akkaHttpSprayJson
+    )
+  )
+  settings ++ dockerSettings
+}
+
+lazy val defenderIntegration = projectModule("defender-integration")
+  .dependsOn(defenderApi % "test->test;compile->compile;it->test")
+  .configs(IntegrationTest, Docker)
+  .settings(integrationSettings)
+  .enablePlugins(
+    BuildInfoPlugin,
+    JavaAppPackaging,
+    DockerPlugin
+  )

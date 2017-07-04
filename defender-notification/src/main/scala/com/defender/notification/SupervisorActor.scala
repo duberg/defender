@@ -1,23 +1,27 @@
 package com.defender.notification
 
-import java.io.FileNotFoundException
+import javax.mail.internet.AddressException
 
 import akka.actor.SupervisorStrategy._
 import akka.actor.{ Actor, ActorLogging, ActorRef, OneForOneStrategy, Props }
 import com.defender.api.ActorLifecycleHooks
 import com.defender.notification.SupervisorActor._
+import com.sun.mail.util.MailConnectException
 
 import scala.concurrent.duration._
 
 class SupervisorActor extends Actor with ActorLogging with ActorLifecycleHooks {
   override val supervisorStrategy: OneForOneStrategy =
     OneForOneStrategy(maxNrOfRetries = 10, withinTimeRange = 1 minute) {
-      case e: FileNotFoundException =>
-        log.error(e, e.getMessage)
+      case e: MailConnectException =>
+        log.warning(e.getMessage)
         Resume
+      case e: AddressException =>
+        log.error(e, e.getMessage)
+        Stop
       case e: Exception =>
         log.error(e, e.getMessage)
-        Resume
+        Restart
     }
   def receive: PartialFunction[Any, Unit] = {
     case SuperviseRequest(p: Props, id: String) =>

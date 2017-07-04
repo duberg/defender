@@ -22,7 +22,7 @@ class MailNotifierActor(
   def notifyRecipients(notifications: Notifications): Future[Notifications] = Future {
     if (notifications.nonEmpty) {
       send(
-        "Authentication failure event",
+        "Defender event",
         html(
           body(
             for (x <- notifications.sorted) yield p(x.toString)

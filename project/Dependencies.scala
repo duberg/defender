@@ -1,6 +1,7 @@
 import sbt._
 
 object Dependencies {
+  val currentVersion = "0.3.1"
   val akkaVersion = "2.5.3"
   val akkaHttpVersion = "10.0.8"
   val akkaPersistenceInmemoryVersion = "2.5.1.1"
@@ -16,40 +17,43 @@ object Dependencies {
   val javaxmailVersion = "1.6.0-rc2"
   val typesafeConfigVersion = "1.3.1"
   val scalaArmVersion = "2.0"
+  val scalaLoggingVersion = "3.6.0"
 
-  val akkaActor: ModuleID = "com.typesafe.akka" %% "akka-actor" % akkaVersion
-  val akkaTestKit: ModuleID = "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test
-  val akkaStream: ModuleID = "com.typesafe.akka" %% "akka-stream" % akkaVersion
-  val akkaStreamTestKit: ModuleID = "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test
-  val akkaHttp: ModuleID = "com.typesafe.akka" %% "akka-http" % akkaHttpVersion
-  val akkaHttpTestKit: ModuleID = "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % Test
-  val akkaHttpSprayJson: ModuleID = "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion
-  val akkaPersistence: ModuleID = "com.typesafe.akka" %% "akka-persistence" % akkaVersion
-  val akkaPersistenceQuery: ModuleID = "com.typesafe.akka" %% "akka-persistence-query" % akkaVersion
-  val akkaSlf4j: ModuleID = "com.typesafe.akka" %% "akka-slf4j" % akkaVersion
-  val akkaPersistenceInmemory: ModuleID = "com.github.dnvriend" %% "akka-persistence-inmemory" % akkaPersistenceInmemoryVersion % Test
-  val akkaRemote: ModuleID = "com.typesafe.akka" %% "akka-remote" % akkaVersion
-  val akkaKryo: ModuleID = "com.github.romix.akka" %% "akka-kryo-serialization" % akkaKryoVersion
+  val akkaActor = "com.typesafe.akka" %% "akka-actor" % akkaVersion
+  val akkaTestKit = "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test
+  val akkaStream = "com.typesafe.akka" %% "akka-stream" % akkaVersion
+  val akkaStreamTestKit = "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test
+  val akkaHttp = "com.typesafe.akka" %% "akka-http" % akkaHttpVersion
+  val akkaHttpTestKit = "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion % Test
+  val akkaHttpSprayJson = "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion
+  val akkaPersistence = "com.typesafe.akka" %% "akka-persistence" % akkaVersion
+  val akkaPersistenceQuery = "com.typesafe.akka" %% "akka-persistence-query" % akkaVersion
+  val akkaSlf4j = "com.typesafe.akka" %% "akka-slf4j" % akkaVersion
+  val akkaPersistenceInmemory = "com.github.dnvriend" %% "akka-persistence-inmemory" % akkaPersistenceInmemoryVersion % Test
+  val akkaRemote = "com.typesafe.akka" %% "akka-remote" % akkaVersion
+  val akkaKryo = "com.github.romix.akka" %% "akka-kryo-serialization" % akkaKryoVersion
 
-  val logback: ModuleID = "ch.qos.logback" % "logback-classic" % logbackVersion
+  val logback = "ch.qos.logback" % "logback-classic" % logbackVersion
 
-  val minlog: ModuleID = "com.esotericsoftware.minlog" % "minlog" % minlogVersion
+  val minlog = "com.esotericsoftware.minlog" % "minlog" % minlogVersion
 
-  val leveldb: ModuleID = "org.iq80.leveldb" % "leveldb" % leveldbVersion
-  val leveldbjni: ModuleID = "org.fusesource.leveldbjni" % "leveldbjni-linux64" % leveldbjniVersion
+  val leveldb = "org.iq80.leveldb" % "leveldb" % leveldbVersion
+  val leveldbjni = "org.fusesource.leveldbjni" % "leveldbjni-linux64" % leveldbjniVersion
 
-  val scalacssCore: ModuleID = "com.github.japgolly.scalacss" %% "core" % scalacssVersion
-  val scalacssExt: ModuleID = "com.github.japgolly.scalacss" %% "ext-scalatags" % scalacssVersion
+  val scalacssCore = "com.github.japgolly.scalacss" %% "core" % scalacssVersion
+  val scalacssExt = "com.github.japgolly.scalacss" %% "ext-scalatags" % scalacssVersion
 
-  val scalatest: ModuleID = "org.scalatest" %% "scalatest" % scalatestVersion % Test
+  val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion % Test
 
-  val scalamock: ModuleID = "org.scalamock" %% "scalamock-scalatest-support" % scalamockVersion % Test
+  val scalamock = "org.scalamock" %% "scalamock-scalatest-support" % scalamockVersion % Test
 
-  val scalatags: ModuleID = "com.lihaoyi" %% "scalatags" % scalatagsVersion
+  val scalatags = "com.lihaoyi" %% "scalatags" % scalatagsVersion
 
-  val javaxmail: ModuleID = "com.sun.mail" % "javax.mail" % javaxmailVersion
+  val javaxmail = "com.sun.mail" % "javax.mail" % javaxmailVersion
 
-  val typesafeConfig: ModuleID = "com.typesafe" % "config" % typesafeConfigVersion
+  val typesafeConfig = "com.typesafe" % "config" % typesafeConfigVersion
 
-  val scalaArm: ModuleID =  "com.jsuereth" %% "scala-arm" % scalaArmVersion
+  val scalaArm = "com.jsuereth" %% "scala-arm" % scalaArmVersion
+
+  val scalaLogging = "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion
 }

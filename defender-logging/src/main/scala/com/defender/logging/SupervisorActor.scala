@@ -13,7 +13,7 @@ class SupervisorActor extends Actor with ActorLogging with ActorLifecycleHooks {
   override val supervisorStrategy: OneForOneStrategy =
     OneForOneStrategy(maxNrOfRetries = 10, withinTimeRange = 1 minute) {
       case e: FileNotFoundException =>
-        log.error(e, e.getMessage)
+        log.warning(e.getMessage)
         Resume
       case e: Exception =>
         log.error(e, e.getMessage)
