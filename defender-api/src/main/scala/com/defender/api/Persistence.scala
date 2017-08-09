@@ -1,6 +1,6 @@
 package com.defender.api
 
-import java.time.{Instant, LocalDateTime, ZoneId}
+import java.time.{ Instant, LocalDateTime, ZoneId }
 
 import akka.actor.ActorLogging
 import akka.persistence._
@@ -28,6 +28,7 @@ object Persistence {
     def snapShotInterval: Int = 100
     def initState: S
     def behavior(state: S): Receive
+    def afterRecover(): Unit = {}
     def afterPersist(state: S): Receive = {
       case SaveSnapshotSuccess(SnapshotMetadata(pid, sequenceNr, timestamp)) =>
         log.info(s"New snapshot {{sequenceNr:$sequenceNr, ${d(timestamp)}}} saved")
@@ -41,17 +42,19 @@ object Persistence {
           if (lastSequenceNr % snapShotInterval == 0 && lastSequenceNr != 0) saveSnapshot(state)
         }
     }
-    def receiveCommand: Receive = active(initState)
-    def receiveRecover: Receive = {
+    def recover: Receive = {
       case event: PersistentEvent =>
-        context.become(active(initState.updated(event)))
+        changeState(initState.updated(event))
         log.info("Persistent event replayed")
       case SnapshotOffer(SnapshotMetadata(pid, sequenceNr, timestamp), snapshot: S @unchecked) =>
-        context.become(active(snapshot))
+        changeState(snapshot)
         log.info(s"Snapshot {{sequenceNr:$sequenceNr, ${d(timestamp)}} offered")
       case RecoveryCompleted =>
         log.info("Recovery completed")
     }
+    def changeState(state: S): Unit = context.become(active(state))
+    def receiveCommand: Receive = active(initState)
+    def receiveRecover: Receive = recover.andThen(_ => afterRecover())
     def d(timestamp: Long): String =
       LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault()).toString
   }
