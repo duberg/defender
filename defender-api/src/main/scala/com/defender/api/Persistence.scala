@@ -1,9 +1,9 @@
 package com.defender.api
 
-import java.time.{ Instant, LocalDateTime, ZoneId }
+import java.time.{Instant, LocalDateTime, ZoneId}
 
 import akka.actor.ActorLogging
-import akka.persistence.{ PersistentActor, SaveSnapshotSuccess, SnapshotMetadata, SnapshotOffer }
+import akka.persistence._
 import akka.util.Timeout
 
 import scala.concurrent.ExecutionContext
@@ -29,9 +29,6 @@ object Persistence {
     def initState: S
     def behavior(state: S): Receive
     def afterPersist(state: S): Receive = {
-      case Persisted =>
-        if (lastSequenceNr % snapShotInterval == 0 && lastSequenceNr != 0) saveSnapshot(state)
-      case NotPersisted =>
       case SaveSnapshotSuccess(SnapshotMetadata(pid, sequenceNr, timestamp)) =>
         log.info(s"New snapshot {{sequenceNr:$sequenceNr, ${d(timestamp)}}} saved")
     }
@@ -40,6 +37,9 @@ object Persistence {
       behavior(state)
         .orElse(afterPersist(state))
         .orElse(throwable)
+        .andThen { _ =>
+          if (lastSequenceNr % snapShotInterval == 0 && lastSequenceNr != 0) saveSnapshot(state)
+        }
     }
     def receiveCommand: Receive = active(initState)
     def receiveRecover: Receive = {
@@ -49,6 +49,8 @@ object Persistence {
       case SnapshotOffer(SnapshotMetadata(pid, sequenceNr, timestamp), snapshot: S @unchecked) =>
         context.become(active(snapshot))
         log.info(s"Snapshot {{sequenceNr:$sequenceNr, ${d(timestamp)}} offered")
+      case RecoveryCompleted =>
+        log.info("Recovery completed")
     }
     def d(timestamp: Long): String =
       LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault()).toString
