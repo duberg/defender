@@ -15,6 +15,7 @@ import scala.util.{ Failure, Success }
 case class WatcherActorState(logEvents: LogEvents = Set.empty, lastModified: Long = 0L) extends PersistentState[WatcherActorState] {
   def updated(persistentEvent: PersistentEvent): WatcherActorState = persistentEvent match {
     case AddedPersistentEvent(l) => copy(logEvents ++ l)
+    case AddedPersistentEventV1(l) => copy(logEvents ++ l)
     case RemovedPersistentEvent(l) => copy(logEvents -- l)
     case FileChangedPersistentEvent(l) => copy(logEvents, l)
   }
@@ -43,8 +44,8 @@ private class WatcherActor(
     val s = sender()
     val diff = l -- state.logEvents
     if (diff.nonEmpty) {
-      persist(AddedPersistentEvent(diff)) { persistentEvent =>
-        context.become(active(state.updated(persistentEvent)))
+      persist(AddedPersistentEventV1(diff)) { persistentEvent =>
+        changeState(state.updated(persistentEvent))
         notifySubscribers(Subscription.newEvent(diff))
         s ! Persisted
         log.info(s"${diff.size} log events added")
@@ -56,7 +57,7 @@ private class WatcherActor(
     val inter = l intersect state.logEvents
     if (inter.nonEmpty) {
       persist(RemovedPersistentEvent(inter)) { persistentEvent =>
-        context.become(active(state.updated(persistentEvent)))
+        changeState(state.updated(persistentEvent))
         s ! Persisted
         log.info(s"${inter.size} log events removed")
       }
@@ -65,7 +66,7 @@ private class WatcherActor(
   def fileChange(l: Long, state: WatcherActorState): Unit = {
     val s = sender()
     persist(FileChangedPersistentEvent(l)) { persistentEvent =>
-      context.become(active(state.updated(persistentEvent)))
+      changeState(state.updated(persistentEvent))
       reader.read onComplete {
         case Success(v) => if (v.nonEmpty) s ! AddCommand(v)
         case Failure(e) => s ! e
@@ -117,7 +118,9 @@ object WatcherActor {
   private[logging] case object Watch
   private[logging] case object Sweep
 
-  sealed case class AddedPersistentEvent(logEvents: LogEvents) extends PersistentEvent
+  sealed case class AddedPersistentEvent(s: LogEvents) extends PersistentEvent
+  sealed case class AddedPersistentEventV1(logEvents2: LogEvents) extends PersistentEvent
+
   sealed case class RemovedPersistentEvent(logEvents: LogEvents) extends PersistentEvent
   sealed case class FileChangedPersistentEvent(lastModified: Long) extends PersistentEvent
 

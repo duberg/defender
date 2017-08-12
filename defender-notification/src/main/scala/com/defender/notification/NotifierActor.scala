@@ -38,7 +38,7 @@ trait NotifierActor extends PersistentStateActor[NotifierActorState] {
     val s = sender()
     if (n.nonEmpty) {
       persist(AddedPersistentEvent(n)) { persistentEvent =>
-        context.become(active(state.updated(persistentEvent)))
+        changeState(state.updated(persistentEvent))
         s ! Notify
         log.info(s"${n.size} notifications added")
       }
@@ -49,7 +49,7 @@ trait NotifierActor extends PersistentStateActor[NotifierActorState] {
     val s = sender()
     if (inter.nonEmpty) {
       persist(RemovedPersistentEvent(inter)) { persistentEvent =>
-        context.become(active(state.updated(persistentEvent)))
+        changeState(state.updated(persistentEvent))
         s ! Persisted
         log.info(s"${inter.size} notifications removed")
       }

@@ -1,0 +1,15 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%X{akkaTimestamp} %highlight(%.-1level) [%cyan(%thread)] [%logger{0}] [%X{akkaSource}] - %highlight(%msg%n)</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="akka.event" level="ERROR" />
+    <logger name="akka.persistence" level="INFO" />
+    <logger name="akka.serialization" level="INFO" />
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
