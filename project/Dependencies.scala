@@ -2,7 +2,7 @@ import sbt._
 
 object Dependencies {
   val currentVersion = "0.3.1"
-  val akkaVersion = "2.5.3"
+  val akkaVersion = "2.5.4"
   val akkaHttpVersion = "10.0.8"
   val akkaPersistenceInmemoryVersion = "2.5.1.1"
   val logbackVersion = "1.2.3"

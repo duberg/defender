@@ -10,7 +10,7 @@ lazy val commonSettings: Seq[Def.Setting[_]] = {
           case env => s"$currentVersion-${env.toString.toUpperCase}"
         }
       },
-      scalaVersion := "2.12.2",
+      scalaVersion := "2.12.3",
       logLevel := Level.Info,
       resolvers ++= Seq(
         Resolver.typesafeRepo("releases"),

@@ -20,6 +20,7 @@ case class TestPersistentStateActor(storage: Seq[String] = Seq.empty) extends Pe
   def updated(event: PersistentEvent): TestPersistentStateActor = event match {
     case CreatedEvt(x) => create(x)
   }
+  def size: Int = storage.size
 }
 
 class TestPersistentActor(

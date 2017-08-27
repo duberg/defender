@@ -8,7 +8,7 @@ import akka.pattern.ask
 
 import scala.concurrent.Future
 
-class PersistentStateActorSpec extends TestKit(ActorSystem("PersistentSpec"))
+class PersistentStateActorSpec extends TestKit(ActorSystem("PersistentStateActorSpec"))
     with AsyncWordSpecLike
     with DefaultTimeout
     with Matchers
@@ -64,24 +64,71 @@ class PersistentStateActorSpec extends TestKit(ActorSystem("PersistentSpec"))
         z shouldBe Yes
       }
     }
-    "restore from snapshot" in {
-      val id = s"TestRecovering-$generateId"
-      val n = SnapshotInterval + SnapshotInterval / 2
-      for {
-        a <- newTestPersistentActor(id = id)
-        _ <- Future.sequence {
-          for (i <- 1 to n) yield ask(a, CreateCmd(generateString()))
+    "snapshot" must {
+      "restore" in {
+        val id = s"TestRecovering-$generateId"
+        val n = SnapshotInterval + SnapshotInterval / 2
+        for {
+          a <- newTestPersistentActor(id = id)
+          _ <- Future.sequence {
+            for (i <- 1 to n) yield ask(a, CreateCmd(generateString()))
+          }
+          x <- ask(a, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
+          y <- ask(a, HasSnapshotCmd)
+          _ <- Future { a ! PoisonPill }
+          _ <- Future { Thread.sleep(500) }
+          c <- newTestPersistentActor(id = id)
+          z <- ask(c, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
+        } yield {
+          x should have size n
+          y shouldBe Yes
+          z should have size n
         }
-        x <- ask(a, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
-        y <- ask(a, HasSnapshotCmd)
-        _ <- Future { a ! PoisonPill }
-        _ <- Future { Thread.sleep(500) }
-        c <- newTestPersistentActor(id = id)
-        z <- ask(c, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
-      } yield {
-        x should have size n
-        y shouldBe Yes
-        z should have size n
+
+      }
+      "restore initState" in {
+        val id = s"TestRecovering-$generateId"
+        val n = SnapshotInterval + SnapshotInterval / 2
+        val s = TestPersistentStateActor(Seq(generateString(), generateString()))
+        for {
+          a <- newTestPersistentActor(s, id)
+          _ <- Future.sequence {
+            for (i <- 1 to n) yield ask(a, CreateCmd(generateString()))
+          }
+          x <- ask(a, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
+          y <- ask(a, HasSnapshotCmd)
+          _ <- Future { a ! PoisonPill }
+          _ <- Future { Thread.sleep(500) }
+          c <- newTestPersistentActor(s, id)
+          z <- ask(c, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
+        } yield {
+          x should have size n + s.size
+          y shouldBe Yes
+          z should have size n + s.size
+        }
+      }
+    }
+    "recover" must {
+      "recover initState" in {
+        val id = s"TestRecovering-$generateId"
+        val n = SnapshotInterval / 2
+        val s = TestPersistentStateActor(Seq(generateString(), generateString()))
+        for {
+          a <- newTestPersistentActor(s, id)
+          _ <- Future.sequence {
+            for (i <- 1 to n) yield ask(a, CreateCmd(generateString()))
+          }
+          x <- ask(a, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
+          y <- ask(a, HasSnapshotCmd)
+          _ <- Future { a ! PoisonPill }
+          _ <- Future { Thread.sleep(500) }
+          c <- newTestPersistentActor(s, id)
+          z <- ask(c, GetAllCmd).mapTo[MultipleEntries].map(_.entries)
+        } yield {
+          x should have size n + s.size
+          y shouldBe No
+          z should have size n + s.size
+        }
       }
     }
   }
